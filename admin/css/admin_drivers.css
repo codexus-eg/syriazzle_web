@@ -1,0 +1,30 @@
+.page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; flex-wrap: wrap; gap: 15px; }
+.page-header h1 { font-size: 24px; margin: 0; }
+.bulk-action-btn { background-color: #0d6efd; color: #fff; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+
+.data-table { width: 100%; border-collapse: collapse; background-color: #fff; box-shadow: 0 5px 20px rgba(0,0,0,0.07); border-radius: 12px; overflow: hidden; }
+.data-table th, .data-table td { padding: 12px 15px; text-align: right; border-bottom: 1px solid #e9ecef; vertical-align: middle; }
+.data-table thead th { background-color: #f8f9fa; font-weight: 700; color: #495057; }
+.data-table tbody tr:last-child td { border-bottom: none; }
+
+.status-badge { padding: 5px 12px; border-radius: 20px; font-weight: 600; font-size: 12px; color: #fff; }
+.actions-cell { display: flex; align-items: center; gap: 10px; }
+.edit-btn { background: none; border: none; color: #0d6efd; cursor: pointer; font-size: 18px; }
+.status-select { padding: 5px 8px; border-radius: 6px; border: 1px solid #ccc; font-family: inherit; }
+.update-status-btn { background-color: #198754; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+
+/* Modal Styles */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1050; display: none; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+.modal-content { background: #fff; padding: 25px; border-radius: 12px; width: 90%; max-width: 500px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
+.modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e9ecef; padding-bottom: 15px; margin-bottom: 20px; }
+.modal-header h4 { margin: 0; font-size: 18px; }
+.modal-close-btn { background: none; border: none; font-size: 24px; cursor: pointer; }
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; font-weight: 600; margin-bottom: 5px; }
+.form-group .form-control { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; box-sizing: border-box; }
+.btn-submit { width: 100%; padding: 12px; border: none; border-radius: 6px; background-color: #0d6efd; color: #fff; font-weight: 700; font-size: 16px; cursor: pointer; }
+.modal-content .form-control {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    direction: ltr; 
+    text-align: left; 
+}

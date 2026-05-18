@@ -1,0 +1,267 @@
+/* --- Global Styles --- */
+:root { 
+    --primary-color: #0d6efd; 
+    --secondary-color: #6c757d; 
+    --success-color: #198754; 
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #0dcaf0;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+    --card-bg: #fff;
+    --card-border: #e9ecef;
+}
+
+/* --- Page Layout --- */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+.page-header h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 25px;
+    grid-template-areas: 
+        "map map timeline"
+        "customer driver business"
+        "invoice invoice invoice";
+}
+
+/* --- Card Styles --- */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+.card-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--card-border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.card-header .icon {
+    font-size: 18px;
+    color: var(--secondary-color);
+}
+.card-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+}
+.card-body {
+    padding: 20px;
+}
+
+/* --- Grid Area Assignments --- */
+#map-card { grid-area: map; }
+#timeline-card { grid-area: timeline; }
+#customer-card { grid-area: customer; }
+#driver-card { grid-area: driver; }
+#business-card { grid-area: business; }
+#invoice-card { grid-area: invoice; }
+
+/* --- Specific Card Styles --- */
+#order-map {
+    height: 400px;
+    border-radius: 8px;
+    background-color: #eee;
+}
+
+.info-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--card-border);
+}
+.info-list li:last-child { border-bottom: none; }
+.info-list .label { color: var(--secondary-color); }
+.info-list .value { font-weight: 600; }
+.info-list a { text-decoration: none; color: var(--primary-color); }
+
+/* --- Timeline --- */
+.timeline { list-style: none; padding: 0; }
+.timeline-item { position: relative; padding-right: 35px; padding-bottom: 20px; }
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-item::before { content: ''; position: absolute; top: 5px; right: 9px; width: 2px; height: 100%; background-color: var(--card-border); }
+.timeline-item.completed::before { background-color: var(--success-color); }
+.timeline-icon { position: absolute; top: 0; right: 0; width: 20px; height: 20px; border-radius: 50%; background-color: #ccc; }
+.timeline-item.completed .timeline-icon { background-color: var(--success-color); }
+.timeline-item.active .timeline-icon { background-color: var(--primary-color); }
+
+/* --- Invoice Table --- */
+.invoice-table { width: 100%; border-collapse: collapse; }
+.invoice-table th, .invoice-table td { padding: 12px; text-align: right; border-bottom: 1px solid var(--card-border); }
+.invoice-table tfoot td { font-weight: 700; }
+
+/* --- Responsive Grid --- */
+@media (max-width: 992px) {
+    .details-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+            "map map"
+            "timeline timeline"
+            "customer driver"
+            "business business"
+            "invoice invoice";
+    }
+}
+@media (max-width: 768px) {
+    .details-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "map"
+            "timeline"
+            "customer"
+            "driver"
+            "business"
+            "invoice";
+    }
+}
+/* --- New Styles for Interactive Timeline & Actions Card --- */
+
+/* Grid Area for Actions Card */
+#actions-card { grid-area: timeline; } /* ستكون بجانب الخريطة */
+
+/* Enhanced Timeline */
+.timeline { 
+    list-style: none; 
+    padding: 0; 
+    margin: 10px 0;
+}
+.timeline-item { 
+    position: relative; 
+    padding-right: 35px; 
+    padding-bottom: 25px; 
+    min-height: 40px;
+}
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-item::before { 
+    content: ''; 
+    position: absolute; 
+    top: 15px; 
+    right: 14px; 
+    width: 3px; 
+    height: calc(100% - 15px); 
+    background-color: var(--card-border); 
+}
+.timeline-item:last-child::before { display: none; }
+.timeline-item.completed::before { background-color: var(--success-color); }
+
+.timeline-icon { 
+    position: absolute; 
+    top: 0; 
+    right: 0; 
+    width: 30px; 
+    height: 30px; 
+    border-radius: 50%; 
+    background-color: #ccc; 
+    border: 3px solid var(--card-bg); 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    color: #fff; 
+    font-size: 14px; 
+}
+.timeline-item.completed .timeline-icon { background-color: var(--success-color); }
+.timeline-item.active .timeline-icon { 
+    background-color: var(--primary-color); 
+    animation: pulse 1.5s infinite;
+}
+.timeline-content {
+    padding-top: 5px;
+}
+.timeline-content h5 { margin: 0; font-size: 15px; font-weight: 700; }
+
+/* Actions Card Styles */
+.actions-form .form-group {
+    margin-bottom: 15px;
+}
+.actions-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+.actions-form .form-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+.actions-form .btn-submit {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--primary-color);
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.actions-form .btn-submit:hover {
+    background-color: #0b5ed7;
+}
+
+/* Print Button */
+.print-btn {
+    background: none;
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+@media print {
+    /* الخطوة 1: إخفاء كل شيء في الصفحة افتراضياً */
+    body * {
+        visibility: hidden;
+    }
+
+    /* الخطوة 2: إظهار فقط البطاقات التي نريدها وكل ما بداخلها */
+    #invoice-card, #invoice-card *,
+    #customer-card, #customer-card *,
+    #driver-card, #driver-card *,
+    #business-card, #business-card * {
+        visibility: visible;
+    }
+    
+    /* الخطوة 3: تنظيم شكل الصفحة المطبوعة */
+    .details-grid {
+        display: block !important; /* إلغاء نظام الشبكة */
+    }
+
+    #invoice-card, #customer-card, #driver-card, #business-card {
+        position: static !important; /* إلغاء أي تحديد للموضع */
+        width: 100% !important;
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+        margin-bottom: 20px;
+        -webkit-print-color-adjust: exact; /* ضمان طباعة الألوان في كروم */
+        print-color-adjust: exact;
+    }
+    
+    .page-header, .sidebar, .actions-form, #map-card, #actions-card, .print-btn {
+        display: none !important; /* تأكيد إخفاء العناصر غير المرغوبة */
+    }
+}
+.leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
+    display: none !important;
+}

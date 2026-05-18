@@ -1,0 +1,217 @@
+:root {
+  --primary-red: #e60000;
+  --primary-red-hover: #c00000;
+  --primary-red-glow: rgba(230, 0, 0, 0.15);
+  --dark-text: #212529;
+  --light-text: #6c757d;
+  --background-light: #f4f5f7;
+  --border-color: #dee2e6;
+  --white: #ffffff;
+  --box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+  --border-radius: 12px;
+  --font-family: "Cairo", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-light);
+  color: var(--dark-text);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  direction: rtl;
+}
+
+.auth-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.auth-box {
+  width: 420px;
+  max-width: 100%;
+  background-color: var(--white);
+  padding: 40px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.6s ease-out forwards;
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.auth-box h2 {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--dark-text);
+  margin-bottom: 8px;
+}
+.auth-box .auth-subtitle {
+  font-size: 15px;
+  color: var(--light-text);
+  margin-bottom: 30px;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 25px;
+}
+.form-group input {
+  width: 100%;
+  padding: 16px 15px;
+  font-size: 16px;
+  font-family: var(--font-family);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+.form-group label {
+  position: absolute;
+  top: -10px;
+  right: 15px;
+  color: var(--light-text);
+  pointer-events: none;
+  transition: all 0.2s ease;
+  background-color: var(--white);
+  padding: 0 5px;
+}
+
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
+  top: -10px;
+  right: 10px;
+  font-size: 13px;
+  color: var(--primary-red);
+}
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary-red);
+  box-shadow: 0 0 0 3px var(--primary-red-glow);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--white);
+  background-color: var(--primary-red);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(230, 0, 0, 0.2);
+}
+.submit-btn:hover:not(:disabled) {
+  background-color: var(--primary-red-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(230, 0, 0, 0.3);
+}
+
+.error-message-box {
+  background-color: rgba(230, 0, 0, 0.05);
+  color: var(--primary-red);
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  border: 1px solid rgba(230, 0, 0, 0.1);
+}
+
+.switch-auth {
+  margin-top: 25px;
+  font-size: 14px;
+  color: var(--light-text);
+}
+.switch-auth a {
+  color: var(--primary-red);
+  font-weight: 700;
+  text-decoration: none;
+}
+.login-method-switcher {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.login-method-switcher label {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.login-method-switcher input[type="radio"] {
+  display: none;
+}
+.login-method-switcher input[type="radio"]:checked + label {
+  background-color: #e60000;
+  color: #fff;
+  border-color: #e60000;
+}
+.iti {
+  width: 100%;
+  direction: ltr;
+}
+.form-group .iti__tel-input {
+  direction: rtl;
+  padding-right: 52px !important;
+}
+
+.remember-me-group {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+}
+.remember-me-group > input {
+  height: 20px !important;
+  width: 20px !important;
+  border: none !important;
+}
+.remember-me-group > input:focus {
+  box-shadow: none !important;
+}
+.remember-me-group > label {
+  top: 3px !important;
+  right: 27px !important;
+  font-weight: bold !important;
+  font-size: 14px !important;
+}
+
+/* أضف هذا الكود في نهاية ملف css/auth.css */
+
+.forgot-password-link {
+    text-align: left; /* يضع الرابط على اليسار في التصميم العربي (RTL) */
+    margin-top: -10px; /* لتقليل المسافة العلوية قليلاً بعد حقل كلمة المرور */
+    margin-bottom: 15px; /* لإعطاء مسافة كافية قبل زر "تذكرني" */
+    font-size: 14px;
+}
+
+.forgot-password-link a {
+    color: var(--primary-red, #e60000); /* استخدام اللون الرئيسي لموقعك */
+    text-decoration: none;
+    transition: text-decoration 0.3s;
+}
+
+.forgot-password-link a:hover {
+    text-decoration: underline; /* إضافة خط تحت الرابط عند مرور الماوس فوقه */
+}

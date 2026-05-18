@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notes</title>
+    <link rel="icon" href="image/favicon.png" type="image/png" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/dubizzle-inspired.css" />
+    <style>
+         body {
+            background-color: #efefef;
+        }
+        .notes-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+         @media(max-width:767px){
+          .notes-container{
+            margin-left: 20px !important;
+            margin-right: 20px !important;
+          }
+        }
+        .notes-header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .notes-header h1 {
+            color: #212121;
+            margin: 0;
+            font-size: 25px;
+            line-height: 1.7;
+        }
+        .notes-header h1 span{
+          color: #FF0002;
+        }
+        .notes-intro {
+            font-size: 17px;
+            line-height: 1.7;
+            color: #4a4a4a;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .suggestions-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+        }
+        .suggestions-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        .suggestions-list .icon {
+            font-size: 20px;
+            color: #e60000; 
+            margin-left: 15px;
+            margin-top: 5px; 
+            width: 25px; /
+        }
+        .suggestions-list .text-content strong {
+            color: #333;
+            display: block;
+            margin-bottom: 7px;
+        }
+        .suggestions-list .text-content span {
+            color: #6c757d;
+            font-size: 15px;
+        }
+        .notes-form textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 16px;
+            resize: vertical;
+            margin-bottom: 20px;
+        }
+        .notes-form .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background-color: #e60000;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+       
+    </style>
+  </head>
+
+  <body>
+    <div class="header-all-post">
+      <a class="imagelink" href="ads.html">
+          <img src="image/logo1.png" alt="">
+      </a>
+    </div>
+        <div class="notes-container"> 
+            <header class="notes-header">
+                <h1>ساهم معنا في تطوير <span>Syriazzle</span></h1>
+            </header>
+            <p class="notes-intro">
+                نؤمن بأن مستخدمينا هم شركاؤنا الحقيقيون في النجاح. شاركنا بأي فكرة تساعدنا على تحسين وتطوير المنصة.
+            </p>
+            <ul class="suggestions-list">
+                <li>
+                    <i class="fas fa-lightbulb icon"></i>
+                    <div class="text-content">
+                        <strong>اقتراح ميزة جديدة</strong>
+                        <span>هل هناك خدمة أو خاصية تتمنى رؤيتها في الموقع؟</span>
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-puzzle-piece icon"></i>
+                    <div class="text-content">
+                        <strong>مشكلة واجهتك</strong>
+                        <span>هل واجهت صعوبة في تصفح الإعلانات، نشر إعلان، أو استخدام أي جزء آخر؟</span>
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-palette icon"></i>
+                    <div class="text-content">
+                        <strong>فكرة للتحسين</strong>
+                        <span>هل لديك أي فكرة لجعل الموقع أسرع، أسهل، أو أجمل؟</span>
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-comment-dots icon"></i>
+                    <div class="text-content">
+                        <strong>رأي عام</strong>
+                        <span>أي شيء آخر تود أن تشاركنا به.</span>
+                    </div>
+                </li>
+            </ul>
+            <form class="notes-form notes-input-container" action="" method="POST">
+                <textarea name="note_content important-notes-input" placeholder="اكتب ملاحظاتك هنا..." required></textarea>
+                <button type="submit" class="submit-btn submit-notes-btn">إرسال الملاحظة</button>
+            </form>
+        </div>
+    <script src="js/main.js"></script>
+    <script src="js/notes-handler.js"></script>
+  </body>
+</html>
+ <!-- <li class="important-notes-section">
+            <i class="fas fa-file-alt"></i>
+            <span>اكتب ملاحظاتك عن تجربتك</span>
+            <div class="notes-input-container">
+              <textarea id="important-notes-input" placeholder="ادخل ملاحظاتك هنا..."></textarea>
+              <button id="submit-notes-btn">إرسال الملاحظات</button>
+            </div>
+  </li> -->

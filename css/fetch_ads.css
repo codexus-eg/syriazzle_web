@@ -1,0 +1,889 @@
+:root {
+    --brand-purple: #5C068C; 
+    --brand-red: #e60000;   
+    --whatsapp-green: #25D366;
+    --light-gray: #f4f5f7;
+    --dark-gray: #4a4a4a;
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: var(--light-gray);
+    margin: 0;
+    padding: 0;
+    color: var(--dark-gray);
+}
+
+h1 {
+    text-align: center;
+    color: red;
+    /* padding: 20px 10px; */
+    /* background-color: #fff; */
+    /* margin-top: 0 !important; */
+    margin-bottom: 25px;
+    /* box-shadow:0 2px 10px rgb(180 176 176); */
+}
+
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px; 
+    padding: 0 15px 30px 15px;
+    max-width: 1200px; 
+    margin: 0 auto; 
+}
+
+.child {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 10px;
+    overflow: hidden; 
+    box-shadow: var(--card-shadow);
+    display: flex; 
+    flex-direction: column;  
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.child:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+
+.child img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover; 
+    display: block;
+}
+
+
+.child h3 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--brand-red); 
+    margin: 10px 0;
+    padding: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 0 10px 10px 10px;
+    flex-wrap: wrap; 
+    gap: 10px;
+}
+
+
+.info-row p {
+    margin: 0; 
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-size: 12px;
+}
+
+
+.price {
+    color: blue;
+}
+
+
+.info-row .location{
+    color:blue;
+    font-size: 12px;
+}
+.loc{
+    display:-webkit-box;
+    -webkit-line-clamp:1;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+.price::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    content: "\f02b"; 
+    margin-left: 6px;
+    color: red;
+}
+
+.location::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    content: "\f3c5";
+    margin-left: 6px;
+    color: red;
+}
+
+
+.info-row .date::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    content: "\f073"; 
+    margin-left: 6px;
+    color: red; 
+}
+
+.actions-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(50px,1fr));
+    gap:7px;
+}
+@media(min-width:400px) {
+    .actions-row{
+        gap:15px;
+    }
+}
+.actions-row a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px 5px;
+    text-decoration: none;
+    color: #000000;
+    border-radius: 8px;
+    font-size: 10px;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+.actions-row a:hover {
+    opacity: 0.9;
+}
+
+.actions-row .btn-call{
+    color: rgb(0, 145, 255);
+    background-color: #cccccc69;
+}
+.btn-call::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 15px;
+    content: "\f095";
+    margin-left: 8px;
+    color: rgb(0, 145, 255);
+}
+
+.actions-row .btn-whatsapp{
+    color: #00ff32;
+    background-color: #00ff3217;
+}
+.btn-whatsapp::before {
+    font-family: "Font Awesome 6 Brands"; 
+    font-weight: 900;
+    font-size: 15px;
+    content: "\f232"; 
+    margin-left: 8px;
+    color: #00ff32;
+}
+
+
+@media (min-width: 768px) {
+    .parent {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .parent {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+/*start fetch_ads*/
+
+        /* --- CSS إضافي للواجهة الجديدة --- */
+        /* شريط الفئات الفرعية */
+        .sub-categories-bar {
+            margin-bottom: 10px;
+            background-color: #fff;
+            padding: 10px 0;
+            overflow-x: auto;
+            white-space: nowrap;
+            border-bottom: 1px solid #e0e0e0;
+            scrollbar-width: none; /* Firefox */
+        }
+        .sub-categories-bar::-webkit-scrollbar { display: none; }
+        .sub-category-chip {
+            display: inline-block;
+            padding: 8px 18px;
+            margin: 0 8px;
+            border-radius: 50px;
+            background-color: #f4f5f7;
+            border: 1px solid #e0e0e0;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .sub-category-chip.active {
+            background-color: var(--brand-red, #e60000);
+            color: #fff;
+            border-color: var(--brand-red, #e60000);
+        }
+        /* زر الفلترة العائم */
+        .filter-fab {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 999;
+            background-color: #e60000;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        /* لوحة الفلاتر المنزلقة */
+        .filter-drawer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            max-height: 85vh;
+            background-color: #fff;
+            border-radius: 16px 16px 0 0;
+            z-index: 1200;
+            transform: translateY(100%);
+            transition: transform 0.4s ease-out;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+        }
+        .filter-drawer.open { transform: translateY(0); }
+        .drawer-header { padding: 16px; text-align: center; font-size: 18px; font-weight: 700; border-bottom: 1px solid #e0e0e0; position: relative; }
+        .drawer-header .close-btn { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 24px; cursor: pointer; color: #757575; }
+        .drawer-content { padding: 20px; overflow-y: auto; }
+        .filter-section { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e0e0e0; }
+        .filter-section:last-child { border-bottom: none; }
+        .filter-section h4 { font-size: 16px; margin: 0 0 16px 0; }
+        .filter-section select, .filter-section input { width: 100%; padding: 12px; border: 1px solid #e0e0e0; border-radius: 8px; }
+        .price-inputs { display: flex; gap: 10px; }
+        .drawer-footer { padding: 16px; border-top: 1px solid #e0e0e0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .drawer-footer button { width: 100%; padding: 14px; border: none; border-radius: 8px; font-size: 16px; font-weight: 700; }
+        #apply-filters-btn { background-color: var(--brand-red, #e60000); color: #fff; }
+        #reset-filters-btn { background-color: #e0e0e0; color: #212121; }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4); z-index: 1100; opacity: 0; visibility: hidden; transition: opacity 0.4s, visibility 0.4s; }
+        .overlay.open { opacity: 1; visibility: visible; }
+
+        /* --- Modal CSS --- */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1500; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: hidden; /* Prevent body scroll, content will scroll */
+            background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+        .modal.open {
+            display: flex; /* Show when open */
+        }
+        .modal-content {
+            background-color: #fefefe;
+            border-radius: 10px;
+            width: 95%; /* Adjust width */
+            max-width: 600px; /* Max width like mobile design */
+            height: 90vh; /* Make it take most of the viewport height */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+            animation: slideInUp 0.4s ease-out; /* Animation from bottom */
+            display: flex;
+            flex-direction: column; /* Stack content vertically */
+            overflow: hidden; /* Hide scroll for content container itself */
+        }
+        @keyframes slideInUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .modal-scrollable-content {
+            flex-grow: 1; /* Allow content to take available space */
+            overflow-y: auto; /* Enable scrolling for THIS content */
+            padding: 0 15px; /* Padding for the scrollable content */
+            padding-bottom: 20px; /* Space before contact buttons */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+        }
+        .modal-scrollable-content::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome, Safari */
+        }
+
+        .modal-header-actions {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10; /* Above image */
+        }
+        .modal-header-actions .modal-close {
+            background-color: rgba(0,0,0,0.5);
+            color: #fff;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .modal-header-actions .modal-close:hover {
+            background-color: rgba(0,0,0,0.7);
+        }
+        .modal-image-carousel {
+            position: relative;
+            width: 100%;
+            height: 250px; /* Fixed height for the main image area */
+            overflow: hidden;
+            background-color: #f0f0f0;
+        }
+        .modal-image-carousel img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Images fully visible */
+            display: block;
+        }
+        .modal-image-carousel .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.5);
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 24px;
+            line-height: 1;
+            border-radius: 50%;
+            z-index: 5;
+        }
+        .modal-image-carousel .nav-arrow.left { left: 10px; }
+        .modal-image-carousel .nav-arrow.right { right: 10px; }
+        .modal-image-carousel .image-count {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(0,0,0,0.5);
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            z-index: 5;
+        }
+
+        /* Thumbnails Gallery */
+        .modal-thumbnails-gallery {
+            display: flex; /* Use flexbox for horizontal scroll */
+            overflow-x: auto; /* Enable horizontal scrolling */
+            gap: 10px;
+            padding: 10px 15px; /* Add some padding around thumbnails */
+            border-bottom: 1px solid #eee;
+            margin-bottom: 15px;
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+            white-space: nowrap; /* Prevent wrapping */
+        }
+        .modal-thumbnails-gallery::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome, Safari */
+        }
+        .modal-thumbnails-gallery img {
+            width: 80px; /* Fixed width for thumbnails */
+            height: 60px; /* Fixed height for thumbnails */
+            object-fit: cover;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 2px solid transparent; /* Default border */
+            transition: border-color 0.2s ease;
+        }
+        .modal-thumbnails-gallery img.active {
+            border-color: var(--brand-red, #e60000); /* Highlight active thumbnail */
+        }
+
+
+        .modal-ad-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #333;
+            margin: 15px 0 10px 0;
+            /* padding: 0 15px;  -> Moved to scrollable-content */
+            text-align: right;
+        }
+        .modal-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: #e60000; /* Brand red for price */
+            margin-bottom: 15px;
+            /* padding: 0 15px; -> Moved to scrollable-content */
+            text-align: right;
+        }
+        .modal-section {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 15px;
+            padding: 15px;
+        }
+        .modal-section h4 {
+            font-size: 16px;
+            color: #555;
+            margin: 0 0 10px 0;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .modal-section h4 i {
+            color: #e60000; /* Icon color */
+        }
+        .modal-detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            font-size: 14px;
+            border-bottom: 1px dashed #eee; /* Light separator */
+        }
+        .modal-detail-row:last-of-type {
+            border-bottom: none;
+        }
+        .modal-detail-row span:first-child {
+            font-weight: 500; /* Less bold than labels */
+            color: #777;
+        }
+        .modal-detail-row span:last-child {
+            color: #333;
+            text-align: left; /* Align values to the left (RTL) */
+            flex-basis: 60%; /* Give more space to value */
+        }
+        .modal-description {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #444;
+            margin-top: 10px;
+        }
+        .modal-tags-container .tag {
+            display: inline-block;
+            background-color: #e0e0e0;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin: 5px;
+            color: #555;
+        }
+
+        .modal-contact-buttons-fixed {
+            background-color: #fff;
+            padding: 15px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        }
+        .modal-contact-buttons-fixed a {
+            flex: 1;
+            padding: 12px 10px;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+            transition: background-color 0.3s ease;
+            display: flex; /* For icon and text centering */
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .modal-contact-buttons-fixed .btn-call {
+            background-color: #28a745; /* Green */
+            color: #fff;
+        }
+        .modal-contact-buttons-fixed .btn-call:hover {
+            background-color: #218838;
+        }
+        .modal-contact-buttons-fixed .btn-whatsapp {
+            background-color: #075E54; /* WhatsApp green */
+            color: #fff;
+        }
+        .modal-contact-buttons-fixed .btn-whatsapp:hover {
+            background-color: #054a43;
+        }
+        .favorite-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+            color: #ccc; /* لون افتراضي (غير مفضل) */
+            padding: 5px;
+            transition: color 0.2s ease-in-out;
+            background-color: #ff000012;
+            border-radius: 10px;
+        }
+
+        .favorite-btn:hover {
+            color: #ff6347; /* لون عند المرور فوقه */
+        }
+
+        .favorite-btn.is-favorite {
+            color: #ff0000; /* لون أحمر للإعلانات المفضلة */
+        }
+        /* Messaging Modal Styles */
+#messageModal .modal-content {
+    margin-top: 10%; /* اجعل مودال الرسائل أعلى قليلاً */
+    max-width: 500px;
+}
+
+#messageModal .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 15px;
+}
+
+#messageModal .modal-header h2 {
+    margin: 0;
+    font-size: 1.3em;
+    color: #333;
+}
+
+#messageModal .messages-display {
+    height: 350px; /* ارتفاع ثابت لعرض الرسائل */
+    overflow-y: auto; /* تفعيل التمرير العمودي */
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column; /* الرسائل تترتب عمودياً */
+}
+
+.message-bubble {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    max-width: 75%;
+    word-wrap: break-word; /* لكسر الكلمات الطويلة */
+    font-size: 0.95em;
+    line-height: 1.4;
+    position: relative;
+}
+
+.message-bubble small {
+    display: block;
+    font-size: 0.75em;
+    color: #666;
+    margin-top: 5px;
+    text-align: end;
+}
+
+.message-bubble.sent {
+    background-color: #DCF8C6; /* لون رسائلك المرسلة (أخضر فاتح) */
+    align-self: flex-end; /* لرسائلك: على اليمين */
+    margin-left: auto;
+}
+
+.message-bubble.received {
+    background-color: #E0F2F1; /* لون الرسائل المستلمة (أزرق فاتح) */
+    align-self: flex-start; /* لرسائل الطرف الآخر: على اليسار */
+    margin-right: auto;
+}
+
+.message-input-area {
+    display: flex;
+    margin-top: 15px;
+    gap: 10px;
+    align-items: flex-end; /* محاذاة العناصر إلى الأسفل */
+}
+
+.message-input-area textarea {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 20px; /* لجعلها تشبه حقل الإدخال في تطبيقات المراسلة */
+    resize: vertical;
+    min-height: 40px;
+    max-height: 120px; /* لتقييد حجم مربع النص عند الكتابة */
+    font-size: 1em;
+}
+
+.message-input-area button {
+    padding: 10px 20px;
+    background-color: #28a745; /* لون أخضر للواتساب */
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1em;
+    white-space: nowrap; /* منع الكلمة من الانقسام */
+}
+
+.message-input-area button:hover {
+    background-color: #218838;
+}
+
+.btn-message {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 3px 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 10px;
+    text-decoration: none;
+
+}
+
+.btn-message:hover {
+    background-color: #0056b3;
+}
+
+/* fetch_ads.css */
+
+/* Message Modal Styles */
+#messageModal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1001; /* Sit on top (higher than adDetailsModal) */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    justify-content: center;
+    align-items: center;
+}
+
+#messageModal .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh; /* Limit height to allow scrolling */
+    overflow: hidden; /* Hide overflow from content */
+}
+
+#messageModal .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+#messageModal .modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+#messageModal .modal-body {
+    flex-grow: 1; /* Allows it to take available space */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Ensure inner sections handle their own scrolling */
+}
+
+.messages-display {
+    flex-grow: 1; /* Takes up most of the space */
+    overflow-y: auto; /* Enable scrolling for messages */
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between messages */
+}
+
+.message-bubble {
+    max-width: 80%;
+    padding: 10px 15px;
+    border-radius: 20px;
+    word-wrap: break-word;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    position: relative; /* For time positioning */
+}
+
+.message-bubble.sent {
+    align-self: flex-end;
+    background-color: #dcf8c6; /* Light green for sent messages */
+    color: #333;
+}
+
+.message-bubble.received {
+    align-self: flex-start;
+    background-color: #ffffff; /* White for received messages */
+    color: #333;
+    border: 1px solid #e0e0e0;
+}
+
+.message-sender {
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 3px;
+    display: block;
+}
+
+.message-text {
+    margin: 0;
+    padding: 0;
+}
+
+.message-time {
+    font-size: 0.75rem;
+    color: #999;
+    text-align: end;
+    margin-top: 5px;
+    display: block;
+}
+
+.no-messages {
+    text-align: center;
+    color: #777;
+    padding: 20px;
+}
+
+.message-input-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+#messageInput {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 1rem;
+    resize: none; /* Disable manual resize */
+    min-height: 40px;
+    max-height: 100px; /* Limit expansion */
+    overflow-y: auto;
+}
+
+#sendMessageBtn {
+    background-color: #28a745; /* Green send button */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#sendMessageBtn:hover {
+    background-color: #218838;
+}
+
+#sendMessageBtn i {
+    margin-left: 5px; /* Space between icon and text */
+}
+
+/* General Modal Styles (if not already defined) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* 10% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more responsive */
+    max-width: 800px; /* Max width for larger screens */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+.modal-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Overlay for filters/modals */
+.overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999; /* Below modals, above content */
+}
+
+.overlay.open {
+    display: block;
+}
+a.child-link {
+    text-decoration: none;
+    color: inherit; /* يجعل النص داخل الرابط يرث لونه الطبيعي */
+    display: block; /* مهم لجعل الرابط يغطي كامل البطاقة */
+}

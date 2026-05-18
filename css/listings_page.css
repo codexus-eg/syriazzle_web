@@ -1,0 +1,494 @@
+:root {
+    --primary-red: #e60000;
+    --primary-red-dark: #c00000;
+    --text-dark: #1a1a1a;
+    --text-light: #5f5f5f;
+    --bg-light: #f8f9fa;
+    --bg-white: #ffffff;
+    --border-color: #e9ecef;
+}
+
+body {
+    background-color: var(--bg-light);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ======================= 1. تنسيق السلايدر الجديد ======================= */
+/* حاوية السلايدر */
+.hero-slider-section {
+    position: relative;
+    width: 100%;
+    height: 240px; /* ارتفاع مناسب */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #f9f9f9;
+    perspective: 1000px; /* لتعزيز الشعور بالعمق الثلاثي الأبعاد */
+}
+
+/* الحاوية الداخلية */
+.carousel-3d {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* تصميم الكارت الواحد (الشريحة) */
+.carousel-item {
+    position: absolute; /* لكي يتراكبوا فوق بعض */
+    width: 87%; /* عرض الكارت الوسطي */
+    max-width: 500px;
+    height: 165px;
+    background: #000;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1); /* حركة انسيابية جداً */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    
+    /* الحالة الافتراضية (مخفي أو في الخلف) */
+    opacity: 0;
+    transform: translateX(0) scale(0.8);
+    z-index: 1;
+}
+
+/* --- الحالات الثلاث للصور --- */
+
+/* 1. الصورة النشطة (في الوسط وفي الأمام) */
+.carousel-item.active {
+    opacity: 1;
+    transform: translateX(0) scale(1); /* حجم كامل ومكان في الوسط */
+    z-index: 10; /* أعلى طبقة */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    border: 2px solid #fff; /* إطار جمالي اختياري */
+}
+
+/* 2. الصورة السابقة (تظهر على اليسار وفي الخلف قليلاً) */
+.carousel-item.prev {
+    opacity: 0.6; /* شفافية لتدل أنها غير نشطة */
+    transform: translateX(-60%) scale(0.85); /* إزاحة لليسار وتصغير */
+    z-index: 5;
+    filter: brightness(0.7); /* تغميق بسيط */
+}
+
+/* 3. الصورة التالية (تظهر على اليمين وفي الخلف قليلاً) */
+.carousel-item.next {
+    opacity: 0.6;
+    transform: translateX(60%) scale(0.85); /* إزاحة لليمين وتصغير */
+    z-index: 5;
+    filter: brightness(0.7);
+}
+
+/* تنسيق الصور */
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* التدرج والنصوص */
+.hero-overlay-gradient {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+
+.hero-content-wrapper {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+    color: white;
+}
+
+.main-title {
+    font-size: 1.2rem;
+    margin: 0;
+    font-weight: bold;
+}
+
+/* ======================= 2. تعديل البوكسات لتشبه الصورة ======================= */
+/* تعديل بسيط على الـ Grid لرفع البوكسات فوق السلايدر قليلاً مثل التصميم الحديث */
+.page-content {
+    position: relative;
+    z-index: 4;
+    margin-top: -60px; /* سحب المحتوى للأعلى فوق السلايدر */
+    padding-top: 0;
+}
+
+.category-card {
+    border-radius: 20px; /* زوايا دائرية أكثر */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* ظل قوي */
+    background: #222; /* خلفية داكنة للبطاقة في حال تأخر تحميل الصورة */
+    border: 1px solid rgba(255,255,255,0.1);
+}
+/* تحسين شكل العنوان داخل البوكس */
+.category-card h3 {
+    bottom: 25px;
+    right: 25px;
+    font-size: 1.4rem;
+}
+
+/* ======================= 2. تعديل البوكسات لتشبه الصورة == */
+.page-content {
+    position: relative;
+    z-index: 4;
+    margin-top: -60px; /* سحب المحتوى للأعلى فوق السلايدر */
+    padding-top: 0;
+}
+
+.category-card {
+    border-radius: 20px; /* زوايا دائرية أكثر */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* ظل قوي */
+    background: #222; /* خلفية داكنة للبطاقة في حال تأخر تحميل الصورة */
+    border: 1px solid rgba(255,255,255,0.1);
+}
+/* تحسين شكل العنوان داخل البوكس */
+.category-card h3 {
+    bottom: 25px;
+    right: 25px;
+    font-size: 1.4rem;
+}
+
+/* توافقية الموبايل */
+@media (max-width: 768px) {
+    .hero-slider-section { height: 280px; }
+    .main-title { font-size: 1.5rem; }
+    .page-content { margin-top: -40px; }
+}
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+.category-card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    aspect-ratio: 4 / 3;
+    transition: transform 0.3s ease;
+}
+.category-card:hover {
+    transform: scale(1.05);
+}
+.category-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.category-card:hover img {
+    transform: scale(1.1);
+}
+.card-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 60%);
+}
+.category-card h3 {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+.category-card h3 i {
+    margin-left: 8px;
+}
+
+/* --- Results Section --- */
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.results-header .section-title {
+    margin: 0;
+    text-align: right;
+}
+.filter-toggle-btn {
+    background: var(--primary-red);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+}
+.filter-toggle-btn:hover {
+    background-color: var(--primary-red-dark);
+}
+
+/* ====== التصميم النهائي الفاخر لبطاقات النتائج ====== */
+.results-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 column on mobile */
+    gap: 20px;
+}
+.business-card {
+    background-color: var(--bg-white);
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgb(0 0 0);
+    border: 1px solid var(--border-color);
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.business-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+.business-card .logo {
+    width: 100%;
+    height: 160px;
+    border-radius: 0;
+    object-fit: cover;
+    margin-left: 15px;
+}
+.business-info {
+    overflow: hidden;
+    flex: 1;
+    padding: 15px;
+}
+.business-info h3 {
+    margin: 0 0 5px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: red;
+    text-align: center;
+}
+.business-info .category,
+.business-info .location {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.business-info .location {
+    margin-top: 5px;
+}
+.distance-badge {
+    margin-right: auto; /* يدفع الشارة إلى أقصى اليسار */
+    background-color: #e7f1ff;
+    color: #0d6efd;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 5px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    align-self: flex-start; /* لضمان بقائها في الأعلى */
+}
+
+.no-results-message {
+    text-align: center;
+    padding: 50px 20px;
+    background: var(--bg-white);
+    border-radius: 15px;
+}
+.no-results-message i {
+    font-size: 4rem;
+    color: #ccc;
+    margin-bottom: 20px;
+}
+.no-results-message h3 {
+    font-size: 1.8rem;
+    margin: 0 0 10px;
+}
+.no-results-message p {
+    color: var(--text-light);
+    margin: 0;
+}
+
+/* ====== التصميم النهائي الفاخر لنافذة الفلاتر ====== */
+.filter-modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 2000;
+    display: none;
+    align-items: flex-start; /* تبدأ من الأعلى على الموبايل */
+    justify-content: center;
+    padding: 0; 
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+@media(max-width:767px){
+    .filter-modal{
+        height: fit-content;
+    }
+}
+.filter-modal.visible {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 1;
+}
+.filter-modal-content {
+    background: var(--bg-white);
+    width: 100%;
+    max-height: 90vh; /* تحديد ارتفاع أقصى */
+    display: flex;
+    flex-direction: column;
+    transform: translateY(-100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.filter-modal.visible .filter-modal-content {
+    transform: translateY(0);
+}
+
+.filter-modal-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 15px 20px !important;
+    border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+.filter-modal-header h3 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.close-filter-btn {
+    background: #f0f0f0;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: var(--text-light);
+    transition: all 0.2s;
+    line-height: 36px; /* لتوسيط الأيقونة */
+}
+.close-filter-btn:hover {
+    background: #e0e0e0;
+    color: var(--text-dark);
+    transform: rotate(90deg);
+}
+
+.filter-modal-body {
+    padding: 30px 20px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+.filter-group { margin-bottom: 30px; }
+.filter-group label { font-weight: 700; display: block; margin-bottom: 10px; }
+.filter-group input[type="text"], .filter-group select {
+    width: 85%;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-family: 'Cairo', sans-serif;
+    font-size: 1rem;
+    background: var(--bg-light);
+}
+.filter-group input[type="text"]:focus, .filter-group select:focus {
+    border-color: var(--primary-red);
+    outline: 0;
+    box-shadow: 0 0 0 4px rgba(230, 0, 0, 0.15);
+}
+
+.nearby-group .slider {
+    width: 100%;
+    -webkit-appearance: none;
+    height: 8px;
+    background: #ddd;
+    outline: none;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+.nearby-group .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    background: var(--primary-red);
+    cursor: pointer;
+    border-radius: 50%;
+}
+.nearby-group .slider::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    background: var(--primary-red);
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+}
+.nearby-group #distance-value {
+    font-weight: bold;
+    color: var(--primary-red);
+}
+.nearby-group .btn-primary {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    margin-top: 15px;
+    border: none;
+    border-radius: 10px;
+    background: var(--primary-red);
+}
+
+/* --- Responsive --- */
+@media (min-width: 768px) {
+    .categories-grid { grid-template-columns: repeat(3, 1fr); }
+    .results-grid { grid-template-columns: repeat(2, 1fr); }
+    .filter-modal {
+        align-items: center; /* توسيط النافذة على الشاشات الكبيرة */
+    }
+    .filter-modal-content {
+        width: 100%;
+        max-width: 500px; /* تحديد عرض أقصى للنافذة */
+        border-radius: 15px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        transform: scale(0.9);
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+    }
+    .filter-modal.visible .filter-modal-content {
+        transform: scale(1);
+    }
+}
+@media (min-width: 992px) {
+    .categories-grid { grid-template-columns: repeat(4, 1fr); }
+}
+@media (min-width: 1200px) {
+    .results-grid { grid-template-columns: repeat(3, 1fr); }
+}

@@ -1,0 +1,170 @@
+:root { 
+:root {
+    --blue: #FF8C00;   /* تم تحويله لبرتقالي Syriazzle */
+    --green: #FFB700;  /* تم تحويله لذهبي برتقالي */
+    --red: #D35400;    /* تم تحويله لبرتقالي محروق (بدلاً من الأحمر) */
+    --yellow: #ffc107;
+    
+    --bg-main: #f0f2f5; 
+    --card-bg: #ffffff; 
+    --text-dark: #212529; 
+    --text-light: #6c757d;
+}
+}
+
+/* --- البطاقات الإحصائية العلوية --- */
+.stats-grid {
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin-bottom: 50px;
+    background-color: #eee;
+    padding: 20px;
+}
+.stat-card {
+    background-color: white;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-weight: bold;
+    box-shadow: 5px 5px 5px #000000b8;
+}
+.stat-card .label {
+    color: rgba(0, 0, 255, 0.726);
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+.stat-card .value {
+    font-size: 23px;
+    font-weight: 700;
+    color: var(--green);
+    direction: ltr;
+}
+
+/* --- شريط الفلترة --- */
+.filter-bar {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    border: 1px solid #e9ecef;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-end; /* لمحاذاة العناصر للأسفل */
+}
+.filter-group {
+    flex-grow: 1;
+}
+.filter-group label {
+    font-weight: 600;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 8px;
+}
+.filter-group input, .filter-group select {
+    width: 90%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    font-family: inherit;
+    font-size: 15px;
+}
+.filter-btn {
+    padding: 12px 25px;
+    border: none;
+    background: linear-gradient(45deg, var(--blue), #0a58ca);
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 15px;
+    box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3);
+    transition: all 0.2s ease;
+}
+.filter-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(13, 110, 253, 0.4);
+}
+
+/* --- تصميم الجدول --- */
+.table-container {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    border: 1px solid #e9ecef;
+    overflow: hidden; /* لإخفاء زوايا الجدول الحادة */
+}
+.data-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+}
+.data-table th, .data-table td { 
+    padding: 16px; 
+    text-align: right; 
+    border-bottom: 1px solid #f0f0f0; 
+    vertical-align: middle; 
+}
+.data-table thead th { 
+    background-color: #f8f9fa; 
+    font-weight: 700; 
+    color: #495057; 
+}
+.data-table tbody tr:last-child td { border-bottom: none; }
+.data-table tbody tr:hover { background-color: #f1f3f5; }
+.data-table a {
+    color: var(--blue);
+    text-decoration: none;
+    font-weight: 600;
+}
+.data-table a:hover {
+    text-decoration: underline;
+}
+
+.payout-amount {
+    color: var(--green);
+    font-weight: 700;
+    font-size: 16px;
+    direction: ltr;
+}
+
+.user-type-badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    color: #fff;
+    font-size: 12px;
+}
+.badge-business { background-color: #0d6efd; }
+.badge-driver { background-color: #ffc107; color: #212529; }
+
+/* --- ترقيم الصفحات (Pagination) --- */
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 25px 0 10px;
+    gap: 8px;
+}
+.pagination a, .pagination span {
+    color: var(--blue);
+    padding: 10px 18px;
+    text-decoration: none;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+.pagination a:hover {
+    background-color: #e9ecef;
+    border-color: #ced4da;
+}
+.pagination span.current, .pagination a.active {
+    background-color: var(--blue);
+    color: white;
+    border-color: var(--blue);
+    cursor: default;
+}
+.pagination span.ellipsis {
+    border: none;
+}

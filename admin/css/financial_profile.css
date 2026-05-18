@@ -1,0 +1,282 @@
+:root {
+  --blue: #0d6efd;
+  --green: #198754;
+  --red: #dc3545;
+  --yellow: #ffc107;
+  --dark-blue: #0a58ca;
+  --bg-main: #f0f2f5;
+  --card-bg: #ffffff;
+  --text-dark: #212529;
+  --text-light: #6c757d;
+}
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+.page-header h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.profile-grid-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.5fr;
+  gap: 25px;
+  align-items: start;
+  margin-bottom: 25px;
+}
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e9ecef;
+}
+.card-header {
+  padding: 15px 20px;
+  border-bottom: 1px solid #e9ecef;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.card-header i {
+  font-size: 16px;
+  color: #6c757d;
+}
+.card-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+.card-body {
+  padding: 20px;
+}
+
+.balance-card .amount {
+  font-size: 36px;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  text-align: center;
+}
+.balance-card .currency-symbol {
+  font-size: 22px;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+.kpi-card {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid #e9ecef;
+}
+.kpi-card .value {
+  font-size: 20px;
+  font-weight: 700;
+}
+.kpi-card .label {
+  font-size: 13px;
+  color: #6c757d;
+}
+
+.actions-card h4 {
+  font-size: 16px;
+  margin: 10px 0 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+.form-group input {
+  font-size: 16px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.input-hint {
+  font-size: 12px;
+  color: #6c757d;
+  margin-top: 5px;
+  text-align: left;
+  direction: ltr;
+  height: 1em;
+}
+.btn-submit {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+  margin-top: 5px;
+}
+.btn-payout {
+  background-color: #0d6efd;
+}
+.btn-adjustment {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.records-card .tabs {
+  display: flex;
+  border-bottom: 2px solid #e9ecef;
+}
+.records-card .tab-link {
+  padding: 12px 20px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-weight: 700;
+  color: #6c757d;
+  border-bottom: 3px solid transparent;
+}
+.records-card .tab-link.active {
+  color: var(--blue);
+  border-bottom-color: var(--blue);
+}
+.records-card .tab-content {
+  display: none;
+}
+.records-card .tab-content.active {
+  display: block;
+  animation: fadeIn 0.4s;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.table-toolbar {
+  padding: 10px 20px;
+  border-bottom: 1px solid #e9ecef;
+}
+.table-search {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+}
+.data-table th,
+.data-table td {
+  padding: 12px 15px;
+  text-align: right;
+  border-bottom: 1px solid #e9ecef;
+}
+.data-table thead th {
+  background-color: #f8f9fa;
+  font-weight: 700;
+  color: #495057;
+}
+.data-table tbody tr:hover {
+  background-color: #f1f3f5;
+}
+.data-table .amount {
+  direction: ltr;
+  font-family: "Segoe UI", Tahoma;
+  text-align: right;
+}
+.data-table a {
+  color: #0d6efd;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.currency-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.currency-controls .usd-rate-form {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.currency-controls input {
+  width: 100px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.currency-controls button {
+  padding: 5px 10px;
+  border: none;
+  background: #6c757d;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.currency-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+.currency-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 28px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+input:checked + .slider {
+  background-color: var(--blue);
+}
+input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
+@media (max-width: 1200px) {
+  .profile-grid-top {
+    grid-template-columns: 1fr 1.5fr;
+  }
+  .balance-card {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 768px) {
+  .profile-grid-top {
+    grid-template-columns: 1fr;
+  }
+}

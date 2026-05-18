@@ -1,0 +1,217 @@
+/* ======================================================================== */
+/* Syriazzle - Cart Stylesheet (النسخة النهائية 3.0)                       */
+/* تصميم متوافق مع الإنشاء الديناميكي من JavaScript                       */
+/* ======================================================================== */
+
+/* --- 1. الزر الدائري العائم (Floating Action Button) --- */
+#cart-fab {
+    position: fixed;
+    bottom: 25px;
+    left: 25px; /* يظهر على اليسار لأنه مناسب للغة العربية (RTL) */
+    width: 60px;
+    height: 60px;
+    background-color: #e60000;
+    color: #fff;
+    border-radius: 50%;
+    display: none; /* يتم إظهاره عبر JS عندما تحتوي السلة على عناصر */
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+    cursor: pointer;
+    z-index: 998;
+    transition: transform 0.2s ease-in-out, background-color 0.2s;
+}
+
+#cart-fab:hover {
+    transform: scale(1.1);
+    background-color: #0056b3;
+}
+
+#cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: var(--primary-color, #e60000);
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #fff;
+}
+
+/* --- 2. لوحة السلة الجانبية --- */
+#cart-panel {
+    position: fixed;
+    top: 0;
+    left: 0; /* يبدأ من اليسار في واجهة RTL */
+    width: 380px;
+    max-width: 90%;
+    height: 100%;
+    background-color: #fff;
+    z-index: 1000;
+    box-shadow: 0 0 25px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    transform: translateX(-100%); /* يكون مخفياً خارج الشاشة إلى اليسار */
+    transition: transform 0.35s ease-in-out;
+}
+
+#cart-panel.open {
+    transform: translateX(0); /* عند إضافة كلاس .open يظهر في الشاشة */
+}
+
+/* --- 3. تنسيقات داخل لوحة السلة --- */
+.cart-header {
+    padding: 1rem;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.cart-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.cart-header #close-cart-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #6c757d;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+.cart-body {
+    padding: 1rem;
+    overflow-y: auto;
+    flex-grow: 1; /* يجعل هذا الجزء يأخذ كل المساحة المتاحة */
+}
+
+.empty-cart-message {
+    text-align: center;
+    color: #6c757d;
+    padding: 3rem 1rem;
+}
+
+.empty-cart-message i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    color: #ced4da;
+}
+
+.cart-item {
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f1f3f5;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.cart-item .details .name {
+    font-weight: 600;
+    margin: 0 0 0.25rem 0;
+}
+
+.cart-item .details .price {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin: 0;
+}
+
+.cart-item .remove-btn {
+    background: #f1f3f5;
+    color: #6c757d;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.cart-item .remove-btn:hover {
+    background-color: #e60000;
+    color: #fff;
+}
+
+.cart-footer {
+    padding: 1rem;
+    border-top: 1px solid #e9ecef;
+    flex-shrink: 0;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.cart-total span:first-child {
+    font-weight: 600;
+}
+
+.cart-total span:last-child {
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: var(--primary-color, #e60000);
+}
+
+#checkout-btn {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--secondary-color, #007bff);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#checkout-btn:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+#checkout-btn:disabled {
+    background-color: #ced4da;
+    cursor: not-allowed;
+}
+
+/* للتأثير عند إضافة عنصر جديد للسلة */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+#cart-fab.pulse {
+    animation: pulse 0.5s ease;
+}

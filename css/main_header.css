@@ -1,0 +1,291 @@
+body {
+    padding-top: 75px !important; 
+    /* تحسينات عامة للتطبيق */
+    -webkit-tap-highlight-color: transparent; /* إزالة الوميض الأزرق عند الضغط في الموبايل */
+    overscroll-behavior-y: none; /* منع تأثير السحب الزائد المزعج */
+}
+.main-site-header {
+    background-color: #fff;
+    padding: 10px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* تخفيف الظل ليبدو أنعم */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1010;
+    height: 75px;
+    box-sizing: border-box;
+}
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+.header-logo img {
+    height: 55px;
+    display: block;
+}
+.main-nav {
+    display: flex;
+    gap: 25px;
+}
+.main-nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 700;
+    font-size: 16px;
+    position: relative;
+    padding: 5px 0;
+}
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    right: 0;
+    width: 0;
+    height: 3px;
+    background-color: #e60000;
+    transition: width 0.3s;
+}
+.main-nav a:hover::after {
+    width: 100%;
+}
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.login-btn {
+    background: none;
+    border: 2px solid #007bff;
+    color: #007bff;
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+.login-btn:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+.add-new-container {
+    position: relative;
+}
+.add-new-btn {
+    background-color: #e60000;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
+}
+.add-new-dropdown1 {
+    position: absolute;
+    left: 0;
+    top: calc(100% + 10px);
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+    width: 280px;
+    border: 1px solid #f0f0f0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.2s ease;
+    z-index: 1020;
+}
+.add-new-dropdown1.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.add-new-dropdown1 ul { list-style: none; padding: 10px; margin: 0; }
+.add-new-dropdown1 a { display: flex; align-items: center; gap: 12px; padding: 12px; text-decoration: none; color: #333; border-radius: 6px; font-weight: 600; }
+.add-new-dropdown1 a:hover { background-color: #f0f2f5; }
+.add-new-dropdown1 a i { width: 30px; text-align: center; font-size: 20px; color: #e60000; }
+.add-new-dropdown1 a .item-text h4 { margin: 0; font-size: 16px; }
+.add-new-dropdown1 a .item-text p { margin: 2px 0 0; font-size: 13px; color: #6c757d; }
+.add-new-dropdown1 .fa-ad { color: #e60000; }
+.add-new-dropdown1 .fa-store { color: #007bff; }
+.user-menu-container { position: relative; }
+.user-menu-trigger { display: flex; align-items: center; gap: 10px; cursor: pointer; text-decoration: none; color: #333; padding: 5px; }
+.user-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #e9ecef; }
+.user-avatar-placeholder { width: 40px; height: 40px; border-radius: 50%; background-color: #007bff; color: #fff; display: flex; justify-content: center; align-items: center; font-size: 18px; font-weight: 700; }
+.user-menu-trigger .username { font-weight: 700; max-width: 80px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.user-menu-dropdown1 {
+    position: absolute; left: 0; top: calc(100% + 15px); background-color: #fff;
+    border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); width: 240px;
+    border: 1px solid #f0f0f0; opacity: 0; visibility: hidden;
+    transform: translateY(10px); transition: all 0.2s ease;
+    z-index: 1020;
+}
+.user-menu-dropdown1.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+.user-menu-dropdown1 ul { list-style: none; padding: 10px; margin: 0; }
+.user-menu-dropdown1 a { display: flex; align-items: center; gap: 12px; padding: 12px; text-decoration: none; color: #333; border-radius: 6px; font-weight: 600; }
+.user-menu-dropdown1 a:hover { background-color: #f0f2f5; }
+.user-menu-dropdown1 a i { width: 20px; text-align: center; color: #6c757d; }
+.user-menu-dropdown1 .dropdown-divider { height: 1px; background: #e9ecef; margin: 8px 0; }
+.user-menu-dropdown1 .logout a { color: #e60000; }
+
+@media (max-width: 992px) {
+    .main-nav { display: none; }
+    .add-new-btn span { display: none; }
+    .add-new-btn { padding: 10px 12px; }
+}
+@media (max-width: 600px) {
+    .header-logo img { height: 58px; }
+    .login-btn span { display: none; }
+    .login-btn { padding: 8px 10px; }
+    .user-menu-trigger .username { display: none; }
+}
+
+/* Notification Button */
+.notification-bell-btn {
+    background: #f0f2f5;
+    border: 1px solid #dee2e6;
+    color: #6c757d;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.notification-bell-btn:hover {
+    background-color: #e9ecef;
+    color: #0d6efd;
+}
+.notification-bell-btn.enabled {
+    background-color: #d1e7dd;
+    color: #198754;
+    cursor: default;
+}
+
+/* Modal Styles */
+.modal-overlay-custom {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.modal-overlay-custom.visible {
+    display: flex;
+    opacity: 1;
+}
+.modal-content-custom {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+.modal-overlay-custom.visible .modal-content-custom {
+    transform: scale(1);
+}
+.modal-icon {
+    font-size: 3rem;
+    color: var(--primary-red, #e60000);
+    margin-bottom: 15px;
+}
+.modal-content-custom h3 {
+    font-size: 1.5rem;
+    margin: 0 0 10px;
+}
+.modal-content-custom p {
+    color: #6c757d;
+    margin: 0 0 25px;
+}
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+.btn-primary-custom, .btn-secondary-custom {
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+}
+.btn-primary-custom {
+    background-color: var(--primary-red, #e60000);
+    color: #fff;
+}
+.btn-secondary-custom {
+    background-color: #e9ecef;
+    color: #343a40;
+}
+
+/* ========================================================== */
+/* === Skeleton Loading Animation (تأثير التمويج الاحترافي) === */
+/* ========================================================== */
+.skeleton {
+    background-color: #e0e0e0;
+    background-image: linear-gradient(
+        90deg, 
+        rgba(255,255,255, 0) 0, 
+        rgba(255,255,255, 0.2) 20%, 
+        rgba(255,255,255, 0.5) 60%, 
+        rgba(255,255,255, 0)
+    );
+    background-size: 200% 100%;
+    background-repeat: no-repeat;
+    border-radius: 4px;
+    display: inline-block;
+    line-height: 1;
+    width: 100%;
+    animation: skeleton-shimmer 1.5s infinite linear;
+}
+
+@keyframes skeleton-shimmer {
+    to {
+        background-position: 200% 0;
+    }
+}
+
+/* تنسيقات مساعدة لعناصر السكيليتون */
+.skeleton-text {
+    height: 1em;
+    margin-bottom: 0.5em;
+    border-radius: 3px;
+}
+.skeleton-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.skeleton-circle {
+    border-radius: 50%;
+}

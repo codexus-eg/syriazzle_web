@@ -1,0 +1,199 @@
+/* ==========================================================================
+   Syriazzle Ads Page Styles - Unified Orange Theme
+   ========================================================================== */
+
+:root {
+    --primary-orange: #ff8c00;    /* البرتقالي الأساسي */
+    --primary-dark: #E67E22;      /* برتقالي غامق للظلال */
+    --accent-gold: #ffb703;       /* ذهبي للتفاصيل */
+    --text-main: #333;
+    --text-sub: #666;
+    --bg-light: #f4f4f4;
+    --white: #ffffff;
+}
+
+body {
+    font-family: 'Cairo', 'Arial', sans-serif; /* استخدام خط Cairo لو متوفر */
+    background-color: var(--bg-light);
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+    text-align: right;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+header {
+    background-color: var(--white);
+    padding: 20px 0;
+    border-bottom: 2px solid var(--primary-orange);
+    text-align: center;
+}
+
+header h1 {
+    color: var(--text-main);
+    margin: 0;
+    font-size: 2em;
+    font-weight: 800;
+}
+
+/* شريط البحث المحدث */
+.search-bar-container {
+    background-color: var(--white);
+    padding: 15px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid #eee;
+}
+
+.search-bar-container input[type="text"] {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: 2px solid #f0f0f0;
+    border-radius: 8px;
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.search-bar-container input[type="text"]:focus {
+    border-color: var(--primary-orange);
+}
+
+.search-bar-container button {
+    background-color: var(--primary-orange);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.search-bar-container button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* شبكة الإعلانات */
+.ads-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+/* بطاقة الإعلان المحدثة */
+.ad-card {
+    background-color: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    text-decoration: none;
+    color: var(--text-main);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #f0f0f0;
+}
+
+.ad-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(255, 140, 0, 0.15);
+    border-color: var(--primary-orange);
+}
+
+.ad-image-wrapper {
+    width: 100%;
+    padding-top: 70%; 
+    position: relative;
+    background-color: #f9f9f9;
+}
+
+.ad-content {
+    padding: 18px;
+    flex-grow: 1;
+}
+
+.ad-content h3 {
+    margin: 0 0 12px 0;
+    font-size: 1.15em;
+    color: var(--text-main);
+    font-weight: 700;
+    transition: color 0.3s;
+}
+
+.ad-card:hover h3 {
+    color: var(--primary-orange);
+}
+
+/* سعر الإعلان باللون البرتقالي */
+.ad-price {
+    font-size: 1.3em;
+    color: var(--primary-orange);
+    font-weight: 800;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.ad-price i {
+    margin-left: 8px;
+    color: var(--accent-gold);
+}
+
+.ad-location, .ad-date {
+    font-size: 0.85em;
+    color: var(--text-sub);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+}
+
+.ad-location i, .ad-date i {
+    margin-left: 8px;
+    color: var(--primary-orange);
+}
+
+/* المودال (نافذة التفاصيل) */
+.modal-content {
+    border-radius: 20px;
+    border-top: 8px solid var(--primary-orange);
+}
+
+.modal-body h2 {
+    color: var(--primary-orange);
+    font-weight: 800;
+}
+
+.contact-info {
+    background-color: rgba(255, 140, 0, 0.05); /* خلفية برتقالية خفيفة جداً */
+    border: 1px solid rgba(255, 140, 0, 0.2);
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.contact-info h3 {
+    color: var(--primary-dark);
+}
+
+.contact-info p i {
+    color: var(--primary-orange);
+}
+
+footer {
+    background-color: #222;
+    border-top: 4px solid var(--primary-orange);
+    padding: 30px;
+    margin-top: 50px;
+}

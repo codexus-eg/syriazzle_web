@@ -1,0 +1,434 @@
+/* ======================================================================== */
+/* Syriazzle Mall - Facebook Style Card (النسخة النهائية الفاخرة 7.0)        */
+/* ======================================================================== */
+
+:root {
+    /* الألوان الأساسية */
+    --primary: #e60000;
+    --secondary: #007bff;
+    --dark: #1f1f1f;
+    --gray-text: #65676b; /* لون نصوص فيسبوك الرمادي */
+    --bg-body: #f0f2f5;   /* خلفية فاتحة جداً لإبراز الكروت */
+    --card-bg: #ffffff;
+    
+    /* التدرجات */
+    --silver-grad: linear-gradient(135deg, #e4e6eb 0%, #ffffff 50%, #b0b3b8 100%);
+    
+    /* الظلال (Shadows) - قوية وواضحة كما طلبت */
+    --shadow-card: 0 4px 8px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+    --shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+    /* الحواف والخطوط */
+    --radius-card: 12px;
+    --font-main: 'Cairo', sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-body);
+    font-family: var(--font-main);
+    color: var(--dark);
+    margin: 0; padding: 0;
+    padding-bottom: 90px;
+}
+
+a { text-decoration: none; color: inherit; transition: 0.2s; }
+button { font-family: var(--font-main); cursor: pointer; }
+
+/* --- 1. الحاوية والهيدر --- */
+.mall-container {
+    max-width: 1360px; margin: 0 auto; padding: 0 15px;
+    overflow-x: hidden;
+}
+
+/* البحث */
+.search-wrapper { position: relative; margin: 20px 0 30px 0; }
+.search-wrapper input {
+    width: 100%; padding: 16px 55px 16px 25px;
+    border-radius: 50px; border: none;
+    background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    font-size: 1rem; transition: 0.3s;
+}
+.search-wrapper input:focus { box-shadow: 0 4px 15px rgba(0,123,255,0.2); outline: none; }
+.search-wrapper i {
+    position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
+    color: #999;
+}
+
+/* السلايدر */
+.hero-slider-container {
+    border-radius: var(--radius-card); overflow: hidden;
+    box-shadow: var(--shadow-card); margin-bottom: 20px;
+}
+.swiper-container { width: 100%; height: 200px; position:relative;}
+.swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
+@media (min-width: 768px) { .swiper-container { height: 380px; } }
+
+/* --- 2. الأقسام (العناوين) --- */
+.dept-section { margin-bottom: 40px; }
+.dept-title {
+    font-size: 1.5rem; font-weight: 800; margin-bottom: 20px;
+    border-right: 5px solid var(--primary); padding-right: 15px;
+    display: flex; align-items: center; gap: 10px;
+}
+
+.cat-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 15px; padding: 0 5px;
+}
+.cat-header h3 { margin: 0; font-size: 1.2rem; font-weight: 700; }
+.see-all {
+    font-size: 0.9rem; color: var(--secondary); font-weight: 600;
+    background: #e7f3ff; padding: 6px 15px; border-radius: 20px;
+}
+
+/* شريط المنتجات الأفقي */
+.products-scroll {
+    display: flex; gap: 15px; overflow-x: auto;
+    padding: 10px 5px 30px 5px; /* مساحة للظل */
+    scroll-behavior: smooth; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+.products-scroll::-webkit-scrollbar { display: none; }
+
+/* ========================================================================== */
+/* --- 3. بطاقة المنتج (تصميم فيسبوك - الغلاف والتداخل) --- HAM هام جداً */
+/* ========================================================================== */
+
+.product-card-new {
+    flex: 0 0 180px; /* عرض مناسب للهاتف */
+    background: var(--card-bg);
+    border-radius: var(--radius-card);
+    overflow: hidden; /* لقص زوايا الصورة من الأعلى */
+    position: relative;
+    /* الظل القوي والواضح */
+    box-shadow: var(--shadow-card); 
+    border: 1px solid rgba(0,0,0,0.05); /* حدود خفيفة جداً */
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex; flex-direction: column;
+}
+
+/* تكبير العرض للشاشات الكبيرة */
+@media (min-width: 768px) {
+    .product-card-new { flex: 0 0 240px; }
+}
+
+.product-card-new:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* أ. حاوية الصورة (الغلاف - Cover) */
+.img-wrap {
+    height: 170px; /* ارتفاع الغلاف */
+    width: 100%;
+    position: relative;
+    padding: 0; /* هام: إزالة الحواف لتملأ الصورة المكان */
+    background-color: #f0f2f5; /* لون خلفية في حال تأخر تحميل الصورة */
+    overflow: visible; /* هام جداً: للسماح للأيقونة بالتداخل والخروج */
+}
+
+/* الصورة نفسها */
+.img-wrap img {
+    width: 100%;
+    height: 100%;
+    /* cover تجعل الصورة تملأ المكان بالكامل دون فراغات */
+    object-fit: cover; 
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.product-card-new:hover .img-wrap img { transform: scale(1.05); }
+
+/* ب. أيقونة الماركة (Facebook Profile Style) */
+.brand-overlay {
+    position: absolute;
+    /* التموضع في الأسفل ليتداخل */
+    bottom: -20px; 
+    right: 12px; /* على اليمين (RTL) */
+    width: 45px;
+    height: 45px;
+    background: #fff;
+    border-radius: 50%;
+    /* الإطار الأبيض العريض هو سر الجمالية */
+    border: 3px solid #fff; 
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 10; /* فوق كل شيء */
+    overflow: hidden;
+}
+
+.brand-overlay img {
+    width: 100%; height: 100%;
+    object-fit: contain; /* الشعار يظهر كاملاً داخل الدائرة */
+    border-radius: 50%;
+}
+
+/* ج. شارة الخصم (فضي لامع) */
+.discount-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px; /* يسار */
+    background: var(--silver-grad);
+    color: #333;
+    font-size: 0.75rem; font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 20px; /* حواف دائرية */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 5;
+    display: flex; align-items: center; gap: 3px;
+}
+/* إضافة أيقونة صغيرة بجانب الخصم */
+.discount-tag::before {
+    content: '\f02b'; /* FontAwesome Tag Icon */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 0.7rem;
+    color: var(--primary);
+}
+
+/* د. منطقة المعلومات (النص الأبيض) */
+.info-wrap {
+    /* مسافة علوية كبيرة لكي لا يغطي اللوجو النص */
+    padding: 25px 12px 15px 12px; 
+    background: #fff;
+    flex-grow: 1; display: flex; flex-direction: column;
+    position: relative; z-index: 2;
+}
+
+/* اسم الماركة (نصي) */
+.brand {
+    font-size: 0.7rem; color: #999; font-weight: 600;
+    margin-bottom: 2px; display: block;
+}
+
+/* عنوان المنتج */
+.title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin: 0 0 6px 0;
+    line-height: 1.3;
+    /* قص النص بعد سطرين */
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 2.6em; 
+}
+
+/* الوصف المختصر */
+.desc-snippet {
+    font-size: 0.75rem; color: var(--gray-text);
+    line-height: 1.4; margin-bottom: 10px;
+    display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* السعر */
+.price-row {
+    margin-top: auto;
+    display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px;
+}
+.curr { 
+    font-size: 1.1rem; font-weight: 800; color: var(--primary); 
+}
+.old { 
+    font-size: 0.8rem; text-decoration: line-through; color: #bbb; 
+}
+
+/* --- 4. القائمة الجانبية (Off-Canvas) --- */
+.off-canvas-menu {
+    position: fixed; top: 0; right: -300px; width: 280px; height: 100%;
+    background: #fff; z-index: 1050;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.15);
+    transition: right 0.3s ease-in-out; display: flex; flex-direction: column;
+}
+.off-canvas-menu.open { right: 0; }
+.off-canvas-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6); backdrop-filter: blur(3px);
+    z-index: 1040; opacity: 0; visibility: hidden; transition: 0.3s;
+}
+.off-canvas-overlay.open { opacity: 1; visibility: visible; }
+
+.off-canvas-header {
+    padding: 20px; border-bottom: 1px solid var(--border-color);
+    display: flex; justify-content: space-between; align-items: center;
+    background: #f8f9fa;
+}
+.off-canvas-header h3 { margin: 0; font-size: 1.1rem; font-weight: 700; }
+#close-canvas-btn { background: none; border: none; font-size: 1.5rem; color: #999; }
+
+.off-canvas-body { padding: 15px; overflow-y: auto; flex-grow: 1; }
+.canvas-category-link {
+    display: block; padding: 12px 15px; border-radius: 8px;
+    margin-bottom: 5px; font-weight: 600; color: var(--dark);
+    background: #fff; border: 1px solid #eee;
+}
+.canvas-category-link:hover, .canvas-category-link.active {
+    background: #f0f2f5; color: var(--primary); border-color: var(--primary);
+}
+
+/* --- 5. الأزرار العائمة --- */
+.floating-menu-btn {
+    position: fixed;
+    bottom: 76px;
+    right: 10px;
+    z-index: 990;
+    background: #e60000;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 50px;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+}
+
+/* أيقونة السلة */
+.cart-fab {
+    position: fixed; bottom: 25px; left: 25px;
+    width: 55px; height: 55px;
+    background: var(--secondary); color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    box-shadow: 0 4px 15px rgba(0,123,255,0.4);
+    z-index: 990; cursor: pointer; transition: transform 0.2s;
+}
+.cart-fab:active { transform: scale(0.9); }
+.cart-fab span {
+    position: absolute; top: -5px; right: -5px;
+    background: var(--primary); color: #fff;
+    width: 22px; height: 22px; border-radius: 50%;
+    font-size: 0.75rem; font-weight: bold;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid #fff;
+}
+
+/* --- 6. الحالة الفارغة --- */
+.empty-state {
+    text-align: center; padding: 60px 20px;
+    background: #fff; border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card); margin-top: 20px;
+}
+
+/* --- 7. صفحة عرض المنتج (الصور والأزرار) --- */
+/* هذه التنسيقات خاصة بملف mall_product_view.php */
+.product-view-container {
+    background: #fff; border-radius: 24px; overflow: hidden;
+    box-shadow: var(--shadow-hover); margin-top: 20px; display: flex; flex-wrap: wrap;
+}
+.product-image-section {
+    flex: 1 1 400px; padding: 30px;
+    background: #fff; position: relative;
+    display: flex; align-items: center; justify-content: center;
+}
+.product-image-section img { max-width: 100%; max-height: 500px; }
+
+.product-details-section { flex: 1 1 400px; padding: 40px; }
+.prod-title { font-size: 2rem; margin-bottom: 15px; color: var(--dark); }
+.current-price-large { font-size: 2.2rem; color: var(--primary); font-weight: 800; }
+
+.actions-row { display: flex; gap: 15px; margin-top: 30px; }
+.add-cart-btn-large {
+    flex: 1; background: var(--primary); color: #fff;
+    padding: 15px; border-radius: 12px; border: none;
+    font-size: 1.1rem; font-weight: 700;
+    box-shadow: 0 5px 15px rgba(230,0,0,0.3);
+}
+
+/* موبايل صفحة المنتج */
+@media (max-width: 768px) {
+    .product-image-section {
+        height: 45vh;
+        border-bottom-left-radius: 40px;
+        border-bottom-right-radius: 40px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        z-index: 10;
+    }
+    .product-details-section { padding: 30px 20px 100px 20px; margin-top: -20px; }
+    .actions-row {
+        position: fixed; bottom: 0; left: 0; right: 0;
+        background: #fff; padding: 15px; margin: 0;
+        box-shadow: 0 -5px 20px rgba(0,0,0,0.1); z-index: 100;
+    }
+}
+
+/* --- شريط فلاتر الأصناف (Filters Scroll) --- */
+.filters-scroll-wrapper {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+.filters-scroll-wrapper::-webkit-scrollbar { display: none; }
+
+.filter-chip {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 30px;
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-gray);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+}
+
+.filter-chip:hover {
+    background: #f8f9fa;
+    color: var(--primary);
+}
+
+.filter-chip.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+    box-shadow: 0 4px 10px rgba(230, 0, 0, 0.2);
+}
+/* --- شريط فلاتر الأصناف (Filters Scroll) --- */
+.filters-scroll-wrapper {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+.filters-scroll-wrapper::-webkit-scrollbar { display: none; }
+
+.filter-chip {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 30px;
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-gray);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+}
+
+.filter-chip:hover {
+    background: #f8f9fa;
+    color: var(--primary);
+}
+
+.filter-chip.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+    box-shadow: 0 4px 10px rgba(230, 0, 0, 0.2);
+}

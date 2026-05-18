@@ -1,0 +1,630 @@
+/* ==========================================================================
+   1. إعدادات عامة (Global Styles)
+   ========================================================================== */
+:root {
+  --primary-color: #0d6efd;
+  --primary-hover: #0b5ed7;
+  --text-dark: #212529;
+  --text-muted: #6c757d;
+  --border-color: #e0e0e0;
+  --success-color: #198754;
+  --danger-color: #dc3545;
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --radius-md: 12px;
+  --font-family: "Cairo", sans-serif;
+}
+
+body {
+  background-color: #f4f6f9;
+  font-family: var(--font-family);
+  margin: 0;
+}
+
+.form-container {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 20px 15px 80px 15px; /* مسافة سفلية للأزرار */
+}
+
+/* ==========================================================================
+   2. شريط الخطوات (Wizard Nav)
+   ========================================================================== */
+.form-wizard-nav {
+  display: flex;
+  gap: 10px;
+  padding: 15px 5px;
+  margin-bottom: 30px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  background: #fff;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border: 1px solid #f0f0f0;
+}
+.form-wizard-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-tab {
+  flex-shrink: 0;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: #f8f9fa;
+  border: 1px solid transparent;
+  cursor: default;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+.nav-tab.active {
+  background-color: #e7f1ff;
+  color: var(--primary-color);
+  border-color: #b6d4fe;
+}
+
+/* محتوى الخطوات */
+.tab-pane {
+  display: none;
+}
+.tab-pane.active {
+  display: block;
+  animation: fadeInUp 0.4s ease-out;
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   3. تنسيق النماذج (Forms & Inputs)
+   ========================================================================== */
+.form-section {
+  background: #fff;
+  border-radius: 16px;
+  padding: 30px;
+  margin-bottom: 25px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid #f0f0f0;
+}
+.form-section h2 {
+  font-size: 20px;
+  color: var(--text-dark);
+  margin: 0 0 25px 0;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #f7f7f7;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.form-group {
+  margin-bottom: 5px;
+}
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #444;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: #fff;
+  font-family: var(--font-family);
+  font-size: 15px;
+  color: #333;
+  transition: 0.2s;
+  outline: none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.1);
+}
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* ==========================================================================
+   4. رفع الصور (Image Uploader)
+   ========================================================================== */
+.image-uploader-group {
+  border: 2px dashed #cbd5e0;
+  border-radius: 12px;
+  padding: 20px;
+  background: #fafbfc;
+  text-align: center;
+  transition: 0.3s;
+}
+.image-uploader-group:hover {
+  border-color: var(--primary-color);
+  background: #f0f7ff;
+}
+
+.image-uploader-box {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+.image-uploader-box input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 10;
+}
+.image-uploader-box .upload-icon {
+  font-size: 40px;
+  color: #adb5bd;
+  margin-bottom: 10px;
+}
+.image-uploader-box .upload-text {
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.image-preview-container {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 15px;
+}
+.image-preview-item {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid #eee;
+}
+.image-preview-item img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.image-preview-item .delete-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 26px;
+  height: 26px;
+  background: rgba(220, 53, 69, 0.9);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+
+/* ==========================================================================
+   5. الخريطة
+   ========================================================================== */
+#map-section {
+  position: relative;
+}
+#map-container {
+  height: 400px;
+  border-radius: 12px;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px #e0e0e0;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   6. كروت المنيو والعروض (Modern Cards)
+   ========================================================================== */
+#menu-items-container,
+#deal-items-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.menu-item-entry,
+.deal-entry {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #f0f0f0;
+  box-shadow: var(--shadow-md);
+  padding: 25px;
+  position: relative;
+  transition: 0.3s;
+  overflow: hidden;
+}
+.menu-item-entry::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 5px;
+  background: linear-gradient(180deg, var(--primary-color), #4cc9f0);
+}
+.menu-item-entry:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.remove-btn-wrapper {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 5;
+}
+.menu-item-entry .btn-danger {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--danger-color);
+  border: 1px solid #ffe5e7;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+}
+.menu-item-entry .btn-danger:hover {
+  background: var(--danger-color);
+  color: #fff;
+  transform: rotate(90deg);
+}
+
+/* إدارة الفئات */
+.menu-item-category-manager {
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed #e9ecef;
+}
+.category-input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.category-input-group button {
+  background: var(--text-dark);
+  color: #fff;
+  border: none;
+  padding: 0 20px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.category-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.category-tag {
+  background: #fff;
+  border: 1px solid #e9ecef;
+  color: var(--text-muted);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: 0.2s;
+}
+.category-tag:hover {
+  background: #f8f9fa;
+  border-color: #ccc;
+}
+.category-tag.selected {
+  background: #e7f1ff;
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* صورة المنتج */
+.menu-item-fields {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 25px;
+  align-items: start;
+}
+.image-upload-wrapper {
+  position: relative;
+  width: 100%;
+  height: 130px;
+  border-radius: 12px;
+  border: 2px dashed #ced4da;
+  background: #f8f9fa;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.image-upload-wrapper input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+.image-upload-wrapper .upload-icon {
+  font-size: 32px;
+  color: #adb5bd;
+}
+.image-upload-wrapper .image-preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  display: none;
+}
+.image-upload-wrapper .image-preview.has-image {
+  display: block;
+}
+.image-upload-wrapper .image-preview.has-image + .upload-icon {
+  display: none;
+}
+
+.fields-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+.price-input {
+  color: var(--success-color);
+  font-weight: 800;
+  font-size: 16px;
+}
+
+/* أزرار الإضافة */
+#add-menu-item-btn,
+#add-deal-item-btn {
+  width: 100%;
+  padding: 18px;
+  background: #fff;
+  color: var(--text-dark);
+  border: 2px dashed #dbe2e8;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: 0.3s;
+}
+#add-menu-item-btn:hover {
+  border-color: var(--success-color);
+  color: var(--success-color);
+  background: #fafffc;
+}
+
+/* خيار الحذف النهائي (خاص بالتعديل) */
+.delete-existing-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px dashed #eee;
+  color: var(--danger-color);
+  font-weight: 600;
+  font-size: 14px;
+}
+.delete-existing-item input {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   7. ساعات العمل (Time Picker)
+   ========================================================================== */
+.form-grid-hours {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.hours-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 25px;
+  background: #fff;
+  border: 1px solid #f0f0f0;
+  border-radius: 12px;
+  flex-wrap: wrap;
+  gap: 20px;
+  transition: 0.3s;
+}
+.hours-row:hover {
+  border-color: #b6d4fe;
+  box-shadow: var(--shadow-md);
+}
+.day-label {
+  font-weight: 800;
+  font-size: 16px;
+  width: 80px;
+}
+.status-toggle label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.status-toggle input {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.time-inputs-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-grow: 1;
+  justify-content: flex-end;
+  opacity: 1;
+  transition: 0.3s;
+}
+.time-inputs-group.disabled {
+  opacity: 0.3;
+  pointer-events: none;
+  filter: grayscale(1);
+}
+.time-input {
+  width: auto !important;
+  padding: 8px 12px;
+  background: #f8f9fa;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   8. أزرار التنقل (Sticky Footer)
+   ========================================================================== */
+.form-navigation {
+  margin-top: 40px;
+  padding: 20px 25px;
+  background: #fff;
+  border-top: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  bottom: 0;
+  z-index: 900;
+  box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.05);
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.btn-nav {
+  padding: 12px 35px;
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s;
+  font-family: var(--font-family);
+}
+.btn-prev {
+  background: #e9ecef;
+  color: var(--text-muted);
+}
+.btn-next {
+  background: var(--primary-color);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(13, 110, 253, 0.25);
+}
+.btn-submit {
+  background: var(--success-color);
+  color: #fff;
+  display: none;
+  box-shadow: 0 4px 15px rgba(25, 135, 84, 0.25);
+}
+.submit-btn-wrapper {
+  display: none;
+}
+
+/* ==========================================================================
+   9. الموبايل (Mobile)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .form-container {
+    padding-bottom: 70px;
+  }
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .menu-item-entry {
+    padding: 20px 15px;
+  }
+  .menu-item-fields {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+  .image-upload-wrapper {
+    width: 100%;
+    max-width: 150px;
+    height: 150px;
+  }
+  .fields-grid {
+    width: 100%;
+    grid-template-columns: 1fr;
+    text-align: right;
+  }
+  .remove-btn-wrapper {
+    top: 15px;
+    left: 15px;
+  }
+  .hours-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  .status-toggle {
+    width: 100%;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #eee;
+  }
+  .time-inputs-group {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .form-navigation {
+    padding: 15px;
+  }
+  .btn-nav {
+    padding: 12px 25px;
+    font-size: 14px;
+  }
+}

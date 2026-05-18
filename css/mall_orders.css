@@ -1,0 +1,22 @@
+.orders-container { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+.orders-container h1 { font-size: 2.25rem; font-weight: 800; margin-bottom: 1.5rem; }
+.tabs { display: flex; gap: 1rem; border-bottom: 2px solid #e9ecef; margin-bottom: 2rem; }
+.tab-btn { background: none; border: none; padding: 1rem 0.5rem; font-size: 1.1rem; font-weight: 600; color: #6c757d; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; }
+.tab-btn.active, .tab-btn:hover { color: #007bff; border-bottom-color: #007bff; }
+#orders-list-container { display: flex; flex-direction: column; gap: 1.5rem; }
+.order-card { background: #fff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.07); overflow: hidden; }
+.order-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; background-color: #f8f9fa; border-bottom: 1px solid #e9ecef; }
+.order-header h3 { margin: 0; font-size: 1.2rem; }
+.order-body { padding: 1.5rem; line-height: 1.8; }
+.order-body p { margin: 0 0 0.75rem 0; }
+.order-footer { display: flex; justify-content: flex-end; gap: 1rem; padding: 1rem 1.5rem; background-color: #f8f9fa; border-top: 1px solid #e9ecef; }
+.btn-primary, .btn-secondary { padding: 8px 20px; border-radius: 8px; text-decoration: none; font-weight: 700; border: 1px solid; cursor: pointer; }
+.btn-primary { background-color: #007bff; color: #fff; border-color: #007bff; }
+.btn-secondary { background-color: #e9ecef; color: #212529; border-color: #ced4da; }
+.loader, .empty-state { text-align: center; padding: 3rem; font-size: 1.2rem; color: #6c757d; }
+.status-badge { padding: 5px 12px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; color: #fff; }
+.status-pending_assignment, .status-out_for_delivery { background-color: #ffc107; color: #212529; }
+.status-delivered { background-color: #198754; }
+.status-canceled { background-color: #dc3545; }
+a.order-card-link { text-decoration: none; color: inherit; }
+.order-card-link .order-footer { justify-content: space-between; color: #007bff; font-weight: 600; }

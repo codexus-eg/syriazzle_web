@@ -1,0 +1,316 @@
+/* --- Base Styles & Variables --- */
+:root { 
+    --primary-color: #e60000; 
+    --secondary-color: #0d6efd; 
+    --bg-main: #f4f5f7; 
+    --card-bg: #ffffff; 
+    --text-dark: #212529; 
+    --text-light: #6c757d; 
+    --border-color: #e9ecef; 
+    --success-color: #198754; 
+    --orange-color: #fd7e14;
+}
+html {
+    scroll-behavior: smooth;
+}
+body { 
+    background-color: var(--bg-main) !important; 
+    font-family: 'Cairo', sans-serif; 
+    margin: 0; 
+    color: var(--text-dark);
+}
+
+/* --- Page Layout & Header --- */
+.checkout-page { 
+    padding-bottom: 120px; /* Space for the footer */
+}
+.checkout-header { 
+    background-color: var(--card-bg); 
+    padding: 15px 20px; 
+    text-align: center; 
+    font-size: 20px; 
+    font-weight: 700; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+    position: sticky; 
+    top: 75px; /* Adjust if your main header has a different height */
+    z-index: 99; 
+    color: #e60000;
+}
+.checkout-container { 
+    max-width: 800px; 
+    margin: 0 auto; 
+    padding: 20px 15px; 
+}
+.checkout-section { 
+    background-color: var(--card-bg); 
+    padding: 20px; 
+    border-radius: 12px; 
+    margin-bottom: 15px; 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.section-title { 
+    font-size: 18px; 
+    font-weight: 700; 
+    margin: 0 0 20px 0; 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+}
+.section-title i { 
+    color: var(--primary-color); 
+}
+
+/* --- Address Section --- */
+.address-card { 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+}
+.address-card .map-thumb { 
+    width: 60px; 
+    height: 60px; 
+    background-color: #f0f6ff;
+    color: var(--secondary-color);
+    border-radius: 8px; 
+    flex-shrink: 0; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 24px; 
+}
+.address-card .address-info {
+    flex-grow: 1;
+}
+.address-card .address-info h4 { 
+    margin: 0 0 5px; 
+    font-size: 16px; 
+}
+.address-card .address-info p { 
+    margin: 0; 
+    font-size: 14px; 
+    color: var(--text-light); 
+    line-height: 1.5;
+}
+.change-address-btn { 
+    margin-right: auto; 
+    color: var(--primary-color); 
+    background: transparent; 
+    border: none; 
+    font-weight: 700; 
+    font-family: inherit; 
+    text-decoration: none; 
+    font-size: 15px; 
+    flex-shrink: 0; 
+    cursor: pointer; 
+}
+#address-display-placeholder {
+    padding: 20px;
+    text-align: center;
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+#address-display-placeholder:hover {
+    background-color: #f8f9fa;
+}
+
+/* --- Payment & Tip Options --- */
+.options-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
+    gap: 10px; 
+}
+.option-box { 
+    border: 2px solid var(--border-color); 
+    border-radius: 8px; 
+    padding: 15px 10px; 
+    text-align: center; 
+    cursor: pointer; 
+    transition: all 0.2s; 
+    position: relative;
+    font-weight: 600;
+}
+.option-box .icon { 
+    font-size: 24px; 
+    margin-bottom: 8px; 
+    color: var(--text-dark); 
+    display: block;
+}
+.option-box.selected { 
+    border-color: var(--primary-color); 
+    background-color: #fff9f9; 
+}
+.option-box.selected::after { 
+    content: '\f00c'; 
+    font-family: 'Font Awesome 5 Free'; 
+    font-weight: 900; 
+    color: #fff; 
+    background: var(--primary-color); 
+    width: 22px; 
+    height: 22px; 
+    border-radius: 50%; 
+    position: absolute; 
+    top: -11px; 
+    right: -11px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 12px;
+    border: 2px solid var(--card-bg);
+}
+.option-box[disabled] { 
+    cursor: not-allowed; 
+    background-color: #f8f9fa; 
+    opacity: 0.6; 
+}
+.option-box[disabled]::before { 
+    content: 'قريباً'; 
+    position: absolute; 
+    top: 5px; 
+    left: 5px; 
+    font-size: 10px; 
+    background: var(--text-light); 
+    color: #fff; 
+    padding: 2px 5px; 
+    border-radius: 4px;
+}
+
+.tip-options { display: flex; flex-wrap: wrap; gap: 10px; }
+.tip-btn { background-color: #e9ecef; border: 1px solid transparent; padding: 8px 15px; border-radius: 20px; font-weight: 600; cursor: pointer; font-family: inherit; font-size: 14px; white-space: nowrap; }
+.tip-btn.selected { background-color: #fff4e8; border-color: var(--orange-color); color: #b95000; }
+
+/* --- Promo Code --- */
+.promo-container { display: flex; gap: 10px; }
+.promo-input { flex-grow: 1; padding: 10px 15px; border: 1px solid #ced4da; border-radius: 8px; font-family: inherit; transition: border-color 0.2s; }
+.promo-input:focus { outline: none; border-color: var(--secondary-color); box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.2); }
+.promo-btn { padding: 10px 20px; border: none; border-radius: 8px; background-color: var(--secondary-color); color: #fff; font-weight: 700; cursor: pointer; transition: background-color 0.2s; }
+.promo-btn:disabled { background-color: #ccc; cursor: not-allowed; }
+.promo-feedback { font-size: 14px; margin-top: 8px; font-weight: 600; height: 1em; }
+.promo-feedback.success { color: var(--success-color); }
+.promo-feedback.error { color: var(--primary-color); }
+
+/* --- Delivery Time --- */
+.delivery-time-options { display: flex; gap: 10px; }
+.time-option-btn { flex: 1; padding: 12px; border: 2px solid var(--border-color); border-radius: 8px; background: #fff; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer; text-align: center; transition: all 0.2s; }
+.time-option-btn.selected { border-color: var(--secondary-color); color: var(--secondary-color); background-color: #f0f6ff; }
+#scheduled-time-display { background: #e9f5ff; border: 1px solid #bde0fe; color: #0c5464; border-radius: 8px; padding: 10px 15px; margin-top: 15px; text-align: center; font-weight: 600; display: none; }
+
+/* --- Invoice Summary --- */
+.summary-line { display: flex; justify-content: space-between; padding: 12px 0; font-size: 15px; }
+.summary-line:not(:last-child) { border-bottom: 1px solid #f0f0f0; }
+.summary-line strong { font-weight: 800; }
+.summary-line.total { font-size: 18px; font-weight: 800; border-top: 2px solid var(--text-dark); margin-top: 10px; padding-top: 10px; }
+#promo-line span:first-child { color: var(--success-color); }
+
+/* --- Checkout Footer --- */
+.checkout-footer { position: fixed; bottom: 0; left: 0; width: 100%; background: #fff; padding: 15px 20px; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); z-index: 100; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center; }
+.footer-total span { display: block; font-size: 14px; color: var(--text-light); }
+.footer-total strong { font-size: 20px; color: var(--text-dark); }
+.submit-btn { width: auto; padding: 12px 30px; background: var(--primary-color); color: #fff; border: none; border-radius: 8px; font-size: 18px; font-weight: 700; cursor: pointer; transition: background-color 0.2s; }
+/* --- استبدل القاعدة القديمة بهذه القاعدة الأكثر تحديداً --- */
+#submit-order-btn:disabled { 
+    background-color: #cccccc !important;  /* لون رمادي باهت مع !important لضمان الأولوية */
+    color: #666666 !important;             /* لون نص أغمق */
+    cursor: not-allowed !important;         /* تغيير شكل المؤشر إلى علامة ممنوع */
+    opacity: 0.7 !important;                /* جعله شبه شفاف */
+}
+/* --- Map Modal --- */
+.map-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); z-index: 1000; display: none; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+.map-modal-content { background-color: var(--card-bg); width: 95%; max-width: 700px; height: 90vh; max-height: 650px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); display: flex; flex-direction: column; overflow: hidden; }
+.map-modal-header { padding: 15px 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
+.map-modal-header h4 { margin: 0; font-size: 18px; }
+.close-modal-btn { background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-light); }
+.map-modal-body { flex-grow: 1; position: relative; background-color: #eee; }
+#map-container { width: 100%; height: 100%; }
+.map-center-marker { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -100%); z-index: 401; font-size: 40px; color: var(--primary-color); pointer-events: none; text-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+.map-my-location-btn { position: absolute; bottom: 20px; right: 20px; z-index: 401; background-color: #fff; border: 1px solid #ccc; border-radius: 50%; width: 40px; height: 40px; font-size: 18px; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.2); display: flex; justify-content: center; align-items: center; }
+.map-modal-footer { padding: 10px 15px; border-top: 1px solid var(--border-color); background-color: #f8f9fa; }
+.map-modal-address { font-size: 14px; color: var(--text-dark); text-align: center; font-weight: 600; padding: 5px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+.map-modal-buttons { display: flex; gap: 10px; margin-top: 10px; }
+.map-modal-btn { flex: 1; padding: 12px; border: none; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; }
+.btn-confirm-address { background-color: var(--primary-color); color: #fff; }
+.btn-confirm-address:disabled { background-color: #ccc; cursor: not-allowed; }
+
+/* --- Skeleton Loader --- */
+.skeleton { animation: skeleton-loading 1s linear infinite alternate; }
+@keyframes skeleton-loading { 0% { background-color: hsl(200, 20%, 80%); } 100% { background-color: hsl(200, 20%, 95%); } }
+.skeleton-text { width: 100px; height: 20px; border-radius: 4px; display: inline-block; vertical-align: middle; }
+input#customer_name,input#customer_phone  {
+    border: none;
+    border: 2px solid #727272;
+    border-radius: 10px;
+    padding: 10px;
+    width: 60%;
+    margin: 15px 0;
+}
+label{
+    color: red;
+    font-weight: bold;
+    display: block;
+}
+button.add-address-btn {
+    background: none;
+    border: 2px solid #e60000;
+    border-radius: 10px;
+    padding: 10px 20px;
+    background-color: #c5bebe70;
+}
+/* --- إضافات جديدة لتحسين تجربة الخريطة والبحث --- */
+
+/* 1. شاشة تحميل الخريطة (تغطي اللون الرمادي) */
+.map-loader-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #fff;
+    z-index: 2000; /* فوق الخريطة */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: opacity 0.3s ease;
+}
+
+.map-loader-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loader-spinner {
+    width: 40px; height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #e60000; /* لونك الأحمر */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* 2. تحسين شكل شريط البحث ومؤشر التحميل */
+.leaflet-control-geosearch form {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+.leaflet-control-geosearch input {
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding-right: 35px !important; /* مسافة للمؤشر */
+}
+
+/* أيقونة تحميل تظهر داخل شريط البحث */
+.search-loading-icon {
+    position: absolute;
+    left: 10px; /* يسار لأننا RTL */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #e60000;
+    display: none; /* مخفي افتراضياً */
+}
+.search-loading-icon.active { display: block; animation: spin 1s linear infinite; }

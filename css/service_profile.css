@@ -1,0 +1,210 @@
+/* ======================================================================== */
+/* Syriazzle Services - Service Profile Stylesheet (النسخة النهائية 3.0) */
+/* ======================================================================== */
+
+:root {
+    --primary-blue: #0d6efd;
+    --primary-dark: #0a58ca;
+    --primary-gradient: linear-gradient(135deg, #0d6efd, #3c82f9);
+    --bg-light: #f8f9fa;
+    --bg-white: #ffffff;
+    --border-color: #e9ecef;
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --star-color: #ffc107;
+    --danger-color: #dc3545;
+    --font-family: 'Cairo', sans-serif;
+    --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+    --card-shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.05);
+    --card-radius: 12px;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-primary);
+    font-family: var(--font-family);
+}
+.service-profile-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* --- Hero Section --- */
+.service-hero {
+    position: relative; height: 350px; border-radius: 16px; overflow: hidden;
+    background-size: cover; background-position: center; color: #fff;
+    display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem;
+}
+.hero-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 60%);
+}
+.hero-content { position: relative; z-index: 2; }
+.business-category-badge {
+    background-color: rgba(255, 255, 255, 0.15); backdrop-filter: blur(5px);
+    padding: 6px 14px; border-radius: 20px; font-size: 0.9rem; font-weight: 700;
+    margin-bottom: 0.75rem; display: inline-block; border: 1px solid rgba(255,255,255,0.2);
+}
+.hero-content h1 { font-size: 2.75rem; font-weight: 800; margin: 0; text-shadow: 0 2px 5px rgba(0,0,0,0.6); }
+.hero-meta { display: flex; align-items: center; gap: 1.5rem; margin-top: 0.75rem; font-weight: 600; }
+.hero-meta .rating, .hero-meta .location { display: flex; align-items: center; gap: 0.5rem; }
+.hero-meta .rating i { color: var(--star-color); }
+.hero-meta .rating span { opacity: 0.85; font-size: 0.9rem; }
+
+/* --- Layout Grid --- */
+.profile-layout {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    align-items: flex-start;
+}
+.profile-main-content { min-width: 0; }
+.profile-sidebar { position: sticky; top: 2rem; }
+
+/* --- Tabs --- */
+.profile-tabs {
+    display: flex;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 2rem;
+}
+.tab-link {
+    padding: 1rem 1.5rem; font-weight: 700; color: var(--text-secondary);
+    text-decoration: none; border-bottom: 2px solid transparent; margin-bottom: -2px;
+    transition: all 0.2s; display: flex; align-items: center; gap: 0.5rem;
+}
+.tab-link:hover { color: var(--text-primary); }
+.tab-link.active { color: var(--primary-blue); border-bottom-color: var(--primary-blue); }
+.tab-pane { display: none; }
+.tab-pane.active { display: block; animation: fadeIn 0.5s; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* --- General Components & Cards --- */
+.profile-card {
+    background-color: var(--bg-white); border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow); padding: 1.5rem;
+}
+.tab-pane h2, .tab-pane h3 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+.tab-pane h3 { font-size: 1.25rem; }
+.description-text, .review-text { line-height: 1.8; color: var(--text-secondary); }
+.btn {
+    display: inline-block; padding: 12px 24px; border: none; border-radius: 8px; font-weight: 700;
+    cursor: pointer; transition: all 0.2s; text-decoration: none; font-size: 1rem;
+}
+.btn-primary { background: var(--primary-gradient); color: #fff; box-shadow: 0 4px 15px rgba(13,110,253,0.2);    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    font-size: 20px;
+    font-weight: bold; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(13,110,253,0.3); }
+.btn-primary:disabled { background: #adb5bd; cursor: not-allowed; box-shadow: none; transform: none; }
+.btn-block { display: block; width: 100%; text-align: center; }
+
+/* --- Booking Widget (Sidebar) --- */
+#booking-widget { padding: 1.5rem; }
+#booking-interface-container h4 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+.form-group { margin-bottom: 1rem; }
+.form-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem; }
+.form-group input {
+    width: 100%; padding: 12px; border: 1px solid var(--border-color);
+    border-radius: 8px; font-size: 1rem; font-family: var(--font-family); background-color: var(--bg-light);
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+#booking-summary-container { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); }
+.summary-item { display: flex; justify-content: space-between; margin-bottom: 0.75rem; }
+.summary-item strong { font-weight: 700; }
+.summary-total { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color); font-size: 1.3rem; font-weight: 800; }
+#checkout-button { margin-top: 1.5rem; }
+
+/* --- Service Cards --- */
+#services-list-container .service-card {
+    background: var(--bg-white); border: 1px solid var(--border-color); border-radius: var(--card-radius);
+    margin-bottom: 1.5rem; padding: 1.5rem; transition: all 0.2s; border-left: 4px solid transparent;
+}
+#services-list-container .service-card:hover { transform: translateY(-3px); box-shadow: var(--card-shadow-hover); }
+#services-list-container .service-card.selected { border-left-color: var(--primary-blue); box-shadow: 0 0 0 1px var(--primary-blue); }
+#services-list-container .service-card.disabled { opacity: 0.5; background-color: var(--bg-light); pointer-events: none; }
+.service-card-header { display: flex; justify-content: space-between; align-items: flex-start; }
+.service-card-header h4 { font-size: 1.25rem; margin: 0; }
+.service-card .price { font-size: 1.4rem; font-weight: 800; color: var(--primary-dark); }
+.service-card .price small { font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); }
+.service-card-details { color: var(--text-secondary); margin: 0.75rem 0 1.5rem 0; }
+.select-service-btn {
+    background-color: var(--bg-light); color: var(--text-primary);
+    border: 1px solid var(--border-color); padding: 8px 16px;
+}
+.service-card.selected .select-service-btn { background-color: var(--primary-blue); color: #fff; border-color: var(--primary-blue); }
+
+/* --- Time Slots for Clinics --- */
+#time-slots-container { margin-top: 1.5rem; }
+#time-slots-container h5 { font-size: 1rem; margin-bottom: 1rem; text-align: center; }
+.time-slots-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 0.75rem; }
+.time-slot {
+    padding: 10px; border: 1px solid var(--border-color); border-radius: 8px; text-align: center;
+    cursor: pointer; font-weight: 600; transition: all 0.2s;
+}
+.time-slot:hover { border-color: var(--primary-blue); color: var(--primary-blue); }
+.time-slot.selected { background-color: var(--primary-blue); color: #fff; border-color: var(--primary-blue); }
+.time-slot.disabled { background-color: var(--bg-light); color: #ccc; cursor: not-allowed; text-decoration: line-through; }
+
+/* --- Other Panes (Overview, Gallery, Reviews) --- */
+.contact-list { list-style: none; padding: 0; }
+.contact-list li { display: flex; align-items: center; gap: 1rem; padding: 0.5rem 0; font-weight: 600; }
+.contact-list li i { color: var(--primary-blue); font-size: 1.1rem; }
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+.gallery-item img { width: 100%; height: 150px; object-fit: cover; border-radius: 8px; transition: transform 0.2s; }
+.gallery-item:hover img { transform: scale(1.05); }
+
+.review-card { border-bottom: 1px solid var(--border-color); padding: 1.5rem 0; }
+.review-card:last-child { border-bottom: none; }
+.review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+.review-rating { color: var(--star-color); }
+.review-date { color: var(--text-secondary); font-size: 0.8rem; }
+.placeholder-text { text-align: center; color: var(--text-secondary); padding: 2rem; background-color: var(--bg-light); border-radius: 8px; }
+
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+    .profile-layout { grid-template-columns: 1fr; }
+    .profile-sidebar { position: static; }
+}
+@media (max-width: 768px) {
+    .service-hero { height: auto; min-height: 250px; }
+    .hero-content h1 { font-size: 2rem; }
+    .profile-tabs { overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; }
+    .profile-tabs::-webkit-scrollbar { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+}
+/* ======================================================================== */
+/* Syriazzle - Service Profile Stylesheet (الإضافات الجديدة للوقت)        */
+/* ======================================================================== */
+
+/* تصميم جديد لحقول التاريخ والوقت في الشريط الجانبي */
+#booking-widget .form-group input {
+    background-color: #fff; /* لون أبيض بدلاً من الرمادي */
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* تنسيق خاص لحقول التاريخ والوقت مع أيقونات */
+.datetime-picker-group {
+    position: relative;
+}
+
+.datetime-picker-group .icon {
+    position: absolute;
+    left: 15px; /* right for LTR */
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    pointer-events: none; /* للسماح بالنقر على حقل الإدخال */
+}

@@ -1,0 +1,159 @@
+/* ========================================================================
+   Syriazzle - Offers (Coming Soon) Page Stylesheet (v1.0 - Final)
+======================================================================== */
+
+:root {
+    --primary-red: #e60000;
+    --primary-red-dark: #c00000;
+    --text-dark: #1a1a1a;
+    --text-light: #5f5f5f;
+    --bg-light: #f8f9fa;
+    --bg-white: #ffffff;
+    --border-color: #e9ecef;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    margin: 0;
+    line-height: 1.7;
+}
+
+.offers-wrapper {
+    padding-top: 120px;
+    padding-bottom: 80px;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.coming-soon-content {
+    background: var(--bg-white);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    border-top: 5px solid var(--primary-red);
+}
+
+.icon-container {
+    font-size: 4rem;
+    color: var(--primary-red);
+    margin-bottom: 25px;
+    animation: bounce 2s infinite;
+}
+
+.coming-soon-content h1 {
+    font-size: 2.8rem;
+    font-weight: 900;
+    margin: 0 0 15px;
+}
+
+.coming-soon-content p {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+.countdown-container {
+    margin-bottom: 40px;
+}
+
+.countdown-container h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--text-dark);
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.timer-box {
+    background: var(--bg-light);
+    padding: 15px;
+    border-radius: 10px;
+    min-width: 90px;
+    border: 1px solid var(--border-color);
+}
+
+.timer-box span {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-red);
+    display: block;
+}
+
+.subscribe-form {
+    background: var(--bg-light);
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.subscribe-form p {
+    margin: 0 auto 20px;
+    font-weight: 600;
+}
+
+.subscribe-form form {
+    display: flex;
+    max-width: 450px;
+    margin: 0 auto;
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    overflow: hidden;
+    background: var(--bg-white);
+}
+
+.subscribe-form input {
+    flex-grow: 1;
+    border: none;
+    background: transparent;
+    padding: 15px 20px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 16px;
+    outline: none;
+}
+
+.subscribe-form button {
+    background: var(--primary-red);
+    color: #fff;
+    border: none;
+    padding: 0 30px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.subscribe-form button:hover {
+    background: var(--primary-red-dark);
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-20px); }
+    60% { transform: translateY(-10px); }
+}
+
+@media (max-width: 768px) {
+    .coming-soon-content h1 { font-size: 2.2rem; }
+    .timer-box { min-width: 70px; }
+    .timer-box span { font-size: 2rem; }
+    .container{margin:16px}
+}
+
+@media (max-width: 480px) {
+    .countdown-timer { gap: 10px; }
+    .timer-box { min-width: 60px; font-size: 0.8rem; padding: 10px; }
+    .timer-box span { font-size: 1.5rem; }
+    .subscribe-form form { flex-direction: column; border-radius: 10px; }
+    .subscribe-form button { border-radius: 0 0 10px 10px; padding: 15px; }
+}

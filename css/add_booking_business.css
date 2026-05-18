@@ -1,0 +1,195 @@
+/* ======================================================================== */
+/* Syriazzle Bookings - Add Booking Business CSS (النسخة النهائية المصقولة) */
+/* ======================================================================== */
+
+:root {
+    --primary-blue: #0d6efd;
+    --bg-light: #f1f5f9;
+    --card-bg: #ffffff;
+    --card-border: #e2e8f0;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --success-color: #10b981;
+    --font-family: 'Cairo', sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-light);
+}
+
+.add-business-container {
+    max-width: 850px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+.form-wizard-container {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.form-wizard-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.form-wizard-header h1 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.form-wizard-header p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 550px;
+    margin: 0.5rem auto 0;
+}
+
+.form-wizard-steps {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 3rem;
+    position: relative;
+}
+.form-wizard-steps::before {
+    content: '';
+    position: absolute;
+    top: 25px; /* In the middle of the icon */
+    left: 15%;
+    right: 15%;
+    height: 3px;
+    background-color: var(--card-border);
+    z-index: 1;
+}
+
+.step-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+    background-color: var(--card-bg);
+    text-align: center;
+}
+.step-icon {
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    background-color: #fff;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    border: 3px solid var(--card-border);
+}
+.step-item span {
+    font-weight: 700;
+    margin-top: 0.75rem;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+}
+.step-item.active .step-icon {
+    background-color: var(--primary-blue);
+    color: #fff;
+    border-color: var(--primary-blue);
+}
+.step-item.active span {
+    color: var(--primary-blue);
+}
+.step-item.completed .step-icon {
+    background-color: var(--success-color);
+    color: #fff;
+    border-color: var(--success-color);
+}
+.step-item.completed span {
+    color: var(--success-color);
+}
+
+.form-step { display: none; animation: fadeIn 0.5s; }
+.form-step.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+.form-step h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+.form-step p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+.category-selector-grid {
+    display: grid;
+    /* Grid Styling */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.category-card {
+    border: 2px solid var(--card-border);
+    border-radius: 12px;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.category-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-blue);
+}
+.category-card.selected {
+    border-color: var(--primary-blue);
+    background-color: rgba(13, 110, 253, 0.05);
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.2);
+}
+.category-card i {
+    font-size: 2.5rem;
+    color: var(--primary-blue);
+}
+.category-card span {
+    font-weight: 700;
+}
+
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; }
+.form-group input, .form-group select, .form-group textarea {
+    width: 90%; padding: 12px 15px; border: 1px solid #ced4da; border-radius: 8px; font-size: 1rem; font-family: inherit;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+.image-upload-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.image-uploader-box { position: relative; width: 100%; padding-top: 60%; border: 2px dashed #ced4da; border-radius: 12px; overflow: hidden; background-color: #f8f9fa; cursor: pointer; transition: border-color 0.2s; }
+.image-uploader-box:hover { border-color: var(--primary-blue); }
+.image-uploader-box .upload-ui { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #6c757d; pointer-events: none; }
+.image-uploader-box .upload-ui i { font-size: 2rem; }
+.image-uploader-box .upload-ui span { font-weight: 600; margin-top: 0.5rem; }
+.image-uploader-box input[type="file"] { display: none; }
+.image-uploader-box .image-preview { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: none; pointer-events: none; }
+.image-uploader-box .remove-image-btn { position: absolute; top: 10px; right: 10px; width: 30px; height: 30px; border-radius: 50%; background-color: rgba(0,0,0,0.6); color: #fff; border: none; cursor: pointer; font-size: 1rem; display: none; align-items: center; justify-content: center; z-index: 5; }
+
+.form-wizard-footer { display: flex; justify-content: space-between; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #dee2e6; }
+.btn { padding: 12px 28px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 1rem; }
+.btn-primary { background: var(--primary-blue); color: #fff; border: none; }
+.btn-secondary { background: #6c757d; color: #fff; border: none; }
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .form-wizard-container { padding: 1.5rem; }
+    .category-selector-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .image-upload-grid, .form-row { grid-template-columns: 1fr; }
+    .form-wizard-steps::before { left: 20%; right: 20%; }
+    .category-card { flex-direction: column; gap: 10px; padding: 20px 10px}
+    .form-step.active {text-align:center}
+}
+@media (max-width: 480px) {
+    .step-item span { font-size: 0.8rem; }
+    .form-wizard-footer { gap: 10px; }
+    .form-wizard-footer button { width: 100%; }
+}

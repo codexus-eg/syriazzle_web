@@ -1,0 +1,6 @@
+uploads/
+*.zip
+*.sql
+.cpanel/
+sessions/
+error_log

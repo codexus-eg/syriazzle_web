@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>تحذير — نظام مخترق</title>
+<style>
+  :root{
+    --bg:#050505;
+    --accent:#ff0033;
+    --accent-2:#ff6a6a;
+    --text:#f5f5f5;
+  }
+  html,body{height:100%;margin:0;font-family: "Cairo", "Courier New", monospace;background:var(--bg);color:var(--text);overflow:hidden}
+  /* خلفية متحركة خفيفة */
+  .bg-gradient{
+    position:fixed;inset:0;
+    background: radial-gradient(ellipse at center, rgba(255,0,0,0.06), transparent 20%),
+                linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.9));
+    filter:blur(0.6px);
+    z-index:0;
+  }
+
+  /* خطوط إلكترونية أمامية (scanlines) */
+  .scanlines{
+    position:fixed;inset:0;z-index:1;pointer-events:none;
+    background-image: repeating-linear-gradient(180deg, rgba(255,0,0,0.02) 0px, rgba(255,0,0,0.02) 1px, transparent 2px, transparent 5px);
+    mix-blend-mode:overlay;
+    opacity:0.9;
+  }
+
+  /* ضباب تشويش متحرك */
+  .noise{
+    position:fixed;inset:0;z-index:2;opacity:0.12;pointer-events:none;
+    background: url("https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif") repeat;
+    background-size:cover;
+    mix-blend-mode:screen;
+    animation:noiseShift 6s linear infinite;
+  }
+  @keyframes noiseShift{ from {transform:translate(0,0)} to {transform:translate(80px,40px)} }
+
+  /* الفلاش الأحمر الجانبي */
+  .red-flash{
+    position:fixed;inset:0;z-index:3;pointer-events:none;
+    background: linear-gradient(90deg, rgba(255,0,0,0.02), rgba(255,0,0,0.08) 40%, rgba(0,0,0,0) 60%);
+    animation:flash 1.8s infinite;
+    opacity:0.8;
+  }
+  @keyframes flash{
+    0%{opacity:0.15}
+    50%{opacity:0.5; transform:translateX(-6px)}
+    100%{opacity:0.15}
+  }
+
+  /* الحاوية المركزية للنص */
+  .center-wrap{
+    position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:4;padding:20px;
+  }
+
+  .popup{
+    width:min(760px, 92%);
+    max-width:900px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(10,10,10,0.6));
+    border:2px solid rgba(255,0,0,0.35);
+    box-shadow:0 10px 60px rgba(255,0,0,0.06), 0 0 40px rgba(255,20,20,0.12);
+    padding:36px;
+    text-align:center;
+    backdrop-filter: blur(3px);
+    transform: translateY(0);
+    overflow:hidden;
+  }
+
+  .popup .hacker-img{
+    width:110px;height:110px;border-radius:50%;object-fit:cover;margin:0 auto 14px;filter:contrast(1.2) saturate(1.2);
+    border:1px solid rgba(255,0,0,0.3);
+    box-shadow:0 8px 30px rgba(255,0,0,0.06), inset 0 0 20px rgba(255,0,0,0.04);
+  }
+
+  h1{
+    margin:0 0 10px 0;
+    font-size:clamp(20px,4.2vw,40px);
+    letter-spacing:2px;
+    color:var(--accent);
+    text-shadow: 0 0 8px rgba(255,0,0,0.22), 0 0 30px rgba(255,0,0,0.08);
+  }
+
+  p.lead{
+    margin:0 auto 14px auto;
+    max-width:760px;
+    font-size:clamp(14px,2.2vw,18px);
+    color:#ffd7d7;
+    line-height:1.6;
+  }
+
+  /* تأثير غليتش على النص */
+  .glitch{
+    position:relative;
+    display:inline-block;
+    font-weight:700;
+  }
+  .glitch::before,
+  .glitch::after{
+    content: attr(data-text);
+    position:absolute;
+    left:0;top:0;
+    width:100%;
+    overflow:hidden;
+    clip-path:polygon(0 0,100% 0,100% 0,0 0);
+    opacity:0.9;
+  }
+  .glitch::before{
+    transform:translate(6px,-4px);
+    color:var(--accent-2);
+    mix-blend-mode:screen;
+    animation:glitchTop 2.4s infinite linear;
+  }
+  .glitch::after{
+    transform:translate(-6px,4px);
+    color:#ffffff;
+    mix-blend-mode:overlay;
+    animation:glitchBottom 2.1s infinite linear;
+  }
+  @keyframes glitchTop{
+    0%{clip-path:polygon(0 0,100% 0,100% 0,0 0)}
+    10%{clip-path:polygon(0 0,100% 0,100% 15%,0 15%)}
+    20%{clip-path:polygon(0 30%,100% 30%,100% 45%,0 45%)}
+    30%{clip-path:polygon(0 0,100% 0,100% 0,0 0)}
+    40%{clip-path:polygon(0 55%,100% 55%,100% 70%,0 70%)}
+    100%{clip-path:polygon(0 0,100% 0,100% 0,0 0)}
+  }
+  @keyframes glitchBottom{
+    0%{clip-path:polygon(0 0,100% 0,100% 0,0 0)}
+    15%{clip-path:polygon(0 5%,100% 5%,100% 18%,0 18%)}
+    30%{clip-path:polygon(0 45%,100% 45%,100% 58%,0 58%)}
+    50%{clip-path:polygon(0 0,100% 0,100% 0,0 0)}
+    100%{clip-path:polygon(0 0,100% 0,100% 0,0 0)}
+  }
+
+  /* نص صغير متحرك (سطر أوامر وهمي) */
+  .terminal{
+    margin-top:18px;
+    background: rgba(0,0,0,0.35);
+    padding:12px 14px;border-radius:6px;
+    font-family: "Courier New", monospace;
+    font-size:13px;color:#bfbfbf;text-align:left;
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
+    max-height:120px;overflow:hidden;
+  }
+  .terminal .line{opacity:0.0;transform:translateX(8px);animation:lineIn 8s linear forwards}
+  .terminal .line:nth-child(1){animation-delay:0.3s}
+  .terminal .line:nth-child(2){animation-delay:1.0s}
+  .terminal .line:nth-child(3){animation-delay:1.8s}
+  .terminal .line:nth-child(4){animation-delay:2.6s}
+  @keyframes lineIn{to{opacity:1;transform:none}}
+
+  /* زر اغلاق / تشغيل الصوت */
+  .controls{margin-top:16px;display:flex;gap:10px;justify-content:center}
+  .btn{
+    padding:10px 14px;border-radius:8px;border:1px solid rgba(255,0,0,0.18);
+    background:transparent;color:var(--text);cursor:pointer;font-weight:600
+  }
+  .btn:active{transform:translateY(1px)}
+  .small{font-size:13px;padding:8px 10px}
+
+  /* اهتزاز خفيف للصفحة عندما تظهر */
+  @keyframes pageShake {
+    0%{transform:translateY(0)}
+    25%{transform:translateY(-3px)}
+    50%{transform:translateY(2px)}
+    75%{transform:translateY(-1px)}
+    100%{transform:none}
+  }
+  .popup{animation:pageShake 0.6s ease-in-out 1}
+  /* استجابة */
+  @media (max-width:520px){
+    .popup{padding:20px}
+    .hacker-img{width:86px;height:86px}
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-gradient"></div>
+<div class="scanlines"></div>
+<div class="noise"></div>
+<div class="red-flash"></div>
+
+<div class="center-wrap">
+  <div class="popup" role="dialog" aria-label="تحذير أمني">
+    <img class="hacker-img" src="https://i.imgur.com/HL7xqqh.png" alt="صورة هاكر" />
+    <h1 class="glitch" data-text="⚠ تم إختراق النظام ⚠">⚠ تم إختراق النظام ⚠</h1>
+    <p class="lead">تم الوصول إلى ملفات السيرفر ووضعية الأمان حرجة — جميع الجلسات خُرقت. إذا لم تكن قد سمحت بهذا الوصول، أغلق المتصفح فوراً.</p>
+
+    <div class="terminal" aria-hidden="false">
+      <div class="line">&gt; [sys] رصد نشاط غير مصرح به ...</div>
+      <div class="line">&gt; [alert] الوصول إلى: /var/www/html/ — جاري تفريغ السجلات</div>
+      <div class="line">&gt; [warn] مفاتيح الوصول معرضة للخطر</div>
+      <div class="line">&gt; [note] هذا مجرد تمثيل بصري — لا يقوم بأي ضرر حقيقي.</div>
+    </div>
+
+    <div class="controls">
+      <button class="btn" id="closeBtn">إغلاق النافذة</button>
+      <button class="btn small" id="soundBtn">تشغيل صوت التحذير</button>
+    </div>
+  </div>
+</div>
+
+<!-- صوت مرعب قصير (يمكن تغييره) -->
+<audio id="scareAudio" preload="auto">
+  <source src="https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg" type="audio/ogg">
+  <source src="https://actions.google.com/sounds/v1/alarms/alarm_clock.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  // أغلب المتصفحات تمنع التشغيل التلقائي مع الصوت — نضع زر لتشغيله يدوياً
+  const audio = document.getElementById('scareAudio');
+  const soundBtn = document.getElementById('soundBtn');
+  soundBtn.addEventListener('click', ()=>{
+    audio.currentTime = 0;
+    audio.volume = 0.9;
+    audio.play().catch(()=>{ alert('المتصفح منع التشغيل التلقائي؛ اضغط مرة أخرى أو فعّل الصوت يدوياً.') });
+  });
+
+  // زر إغلاق — يخرج العنصر ويهدئ الصفحة
+  const closeBtn = document.getElementById('closeBtn');
+  const popup = document.querySelector('.popup');
+  closeBtn.addEventListener('click', ()=>{
+    popup.style.transition = 'transform 0.6s ease, opacity 0.6s ease';
+    popup.style.transform = 'translateY(30vh) rotate(-6deg)';
+    popup.style.opacity = '0';
+    setTimeout(()=> {
+      // نزيل العناصر البصرية الثقيلة
+      document.querySelectorAll('.noise, .red-flash, .scanlines, .bg-gradient').forEach(e=> e.remove());
+    },700);
+  });
+
+  // محاولة تشغيل صوت تلقائياً بصمت لتجاوز سياسات التفعيل (لن يصدر صوت)
+  (async function tryAutoPlay(){
+    try{
+      audio.muted = true;
+      await audio.play();
+      audio.pause();
+      audio.muted = false;
+    }catch(e){}
+  })();
+
+  // تأثير اهتزاز قصير متكرر لزيادة الإحساس بالخطر
+  setInterval(()=> {
+    document.body.animate([{transform:'translate(0,0)'},{transform:'translate(2px,-2px)'},{transform:'translate(-2px,2px)'},{transform:'translate(0,0)'}],{duration:600,iterations:1});
+  },2800);
+</script>
+</body>
+</html>
