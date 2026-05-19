@@ -4,3 +4,10 @@ uploads/
 .cpanel/
 sessions/
 error_log
+vendor/
+logs/
+cgi-bin/
+syriazzle.sy/
+*.ini
+phpinfo.php
+downloads/
